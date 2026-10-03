@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%23ff85a1%22>✿</text></svg>">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>San Juan / Portfolio</title>
@@ -14,6 +15,7 @@ html{scroll-behavior:smooth;scroll-padding-top:5rem}
 *{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:300 1.05rem/1.65 Lexend,system-ui,sans-serif}
 #gl{position:fixed;inset:0;width:100%;height:100%;z-index:0}
+#gl2{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}   /* side branches: behind the panels and all content */
 section{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:6rem clamp(1.2rem,6vw,6rem)}
 .wrap{max-width:1100px;width:100%;margin:auto}
 h1{font-weight:300;font-size:clamp(2.8rem,8vw,6.5rem);line-height:1;margin:0;letter-spacing:-.03em}
@@ -166,6 +168,9 @@ h1{font-weight:400}.sub{color:var(--ink)}
   position: relative;
   max-width: 90vw;
   max-height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .image-modal-content img {
@@ -174,6 +179,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
   border-radius: 16px;
   object-fit: contain;
   box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  user-select: none;
 }
 
 .image-modal-close {
@@ -191,7 +197,61 @@ h1{font-weight:400}.sub{color:var(--ink)}
   display: grid;
   place-items: center;
   box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  transition: background 0.2s;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10;
+}
+.image-modal-close:hover {
+  background: #c2385e;
+  transform: scale(1.1);
+}
+
+/* Modal Navigation Buttons */
+.modal-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(217, 70, 111, 0.8);
+  color: #ffffff;
+  border: none;
+  font-size: 2rem;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  transition: background 0.2s, transform 0.2s;
+  z-index: 10;
+  line-height: 1;
+  user-select: none;
+}
+.modal-nav-btn:hover {
+  background: rgba(217, 70, 111, 1);
+  transform: translateY(-50%) scale(1.1);
+}
+.modal-nav-btn.prev {
+  left: 10px;
+}
+.modal-nav-btn.next {
+  right: 10px;
+}
+
+/* Image Counter Badge */
+.modal-counter {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.65);
+  color: #fff;
+  padding: 0.25rem 0.8rem;
+  border-radius: 99px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  border: 1px solid rgba(255,255,255,0.2);
+  pointer-events: none;
 }
 
 .games-grid {
@@ -424,12 +484,90 @@ h1{font-weight:400}.sub{color:var(--ink)}
     height: 200px;
     min-height: auto;
   }
+  .modal-nav-btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.5rem;
+  }
+  .modal-nav-btn.prev { left: 5px; }
+  .modal-nav-btn.next { right: 5px; }
 }
+
+/* ---- Projects ---- */
+.proj-sub{margin:.2rem 0 1.4rem;color:#7a5f6c}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1.1rem}
+.proj{display:flex;flex-direction:column;border-radius:26px;background:#f7e8ec;padding:.8rem;border:1px solid transparent;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease;text-decoration:none;color:inherit}
+.proj:hover{transform:translateY(-6px);box-shadow:0 18px 34px rgba(194,56,94,.18);border-color:rgba(194,56,94,.35)}
+.proj-shot{position:relative;height:150px;border-radius:18px;padding:.6rem .7rem;overflow:hidden;background:linear-gradient(135deg,#fbdbe4,#e8a3b9);display:flex;flex-direction:column;gap:.5rem}
+.win{display:flex;gap:5px}.win i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.85)}
+.mock{flex:1;display:flex;flex-direction:column;justify-content:center;gap:.4rem;transition:transform .35s ease}
+.proj:hover .mock{transform:translateY(-3px) rotate(-1.2deg) scale(1.03)}
+.mock b{font:600 .72rem/1 ui-monospace,Consolas,monospace;color:#8a2e4d;background:rgba(255,255,255,.88);border-radius:8px;padding:.5rem .6rem}
+.mock-blocks b:nth-child(2){padding:.85rem .6rem;margin-left:.9rem}
+.mock-blocks b:nth-child(3){margin-right:1.4rem}
+.mock u{display:block;height:9px;width:78%;border-radius:6px;background:rgba(255,255,255,.88)}
+.mock u.short{width:50%;opacity:.7}
+.mock-site{align-items:center}.mock-site em{font-style:normal;font-size:2.4rem;line-height:1;color:#fff;text-shadow:0 2px 10px rgba(194,56,94,.4)}
+.mock-site u{margin:0 auto}
+.mock-land b{align-self:flex-start;background:#c2385e;color:#fff;border-radius:99px;padding:.45rem .9rem;margin-top:.2rem}
+.proj-body{padding:.9rem .4rem .4rem;display:flex;flex-direction:column;flex:1}
+.proj-no{font-size:.78rem;letter-spacing:.16em;font-weight:600;color:#c2385e}
+.proj-body h3{margin:.15rem 0 .3rem;font-size:1.25rem;color:var(--cink)}
+.proj-body p{margin:0 0 .8rem;font-size:.95rem;color:#5f4652}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:auto}
+.tags span{font-size:.76rem;padding:.15rem .65rem;border-radius:99px;background:#fff;border:1px solid rgba(194,56,94,.25);color:#7a3a50}
+.proj-next{border:2px dashed rgba(194,56,94,.4);background:transparent;display:grid;place-items:center;text-align:center;min-height:260px;color:#7a5f6c}
+.proj-next:hover{border-color:rgba(194,56,94,.7);box-shadow:none}
+.proj-next em{display:block;font-style:normal;font-size:2.2rem;color:#d9466f;animation:projspin 9s linear infinite}
+.proj-next h3{margin:.3rem 0 .2rem;font-size:1.15rem}.proj-next p{margin:0;font-size:.92rem;color:#7a5f6c}
+@keyframes projspin{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.proj-next em{animation:none}}
+
+/* ---- Shared look: blossom-themed panels ---- */
+.panel{position:relative;background:linear-gradient(180deg,#fffafa 0%,#fdf0f3 100%);border:1px solid rgba(217,70,111,.14)}
+.panel::before,.panel::after{content:"";position:absolute;pointer-events:none;border-radius:60% 0 60% 0;background:linear-gradient(135deg,#ffe0e8,#f29ab4)}
+.panel::before{width:46px;height:46px;top:-16px;left:2.4rem;transform:rotate(20deg)}
+.panel::after{width:30px;height:30px;bottom:-12px;right:3.2rem;transform:rotate(-35deg)}
+.panel h2::after{content:"";display:block;width:64px;height:4px;border-radius:4px;background:linear-gradient(90deg,#d9466f,#ffb3c6);margin-top:.7rem}
+.eyebrow{display:flex;align-items:center;gap:.6rem;font-size:.78rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#c2385e;margin-bottom:.5rem}
+.eyebrow::before{content:"\273F";font-size:1rem}
+.eyebrow::after{content:"";height:1px;width:48px;background:rgba(194,56,94,.4)}
+.panel-sub{margin:.4rem 0 1.2rem;color:#7a5f6c}
+
+/* ---- About ---- */
+.about-lead{font-size:1.2rem;line-height:1.6;color:#3b2a35!important}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1.3rem}
+.chips span{padding:.3rem .95rem;border-radius:99px;background:#f7e8ec;border:1px solid rgba(194,56,94,.25);color:#7a3a50;font-weight:500;font-size:.9rem;transition:transform .2s,background .2s}
+.chips span::before{content:"\273F ";color:#d9466f}
+.chips span:hover{transform:translateY(-2px);background:#fbdbe4}
+.about-media .about-img-container{position:relative;overflow:visible;border:7px solid #fff;border-radius:14px;background:#fff;transform:rotate(2.2deg);box-shadow:0 18px 40px rgba(194,56,94,.22)}
+.about-media .about-img-container img{border-radius:8px}
+.about-media .about-img-container::before{content:"";position:absolute;top:-17px;left:50%;width:96px;height:28px;margin-left:-48px;transform:rotate(-3deg);background:rgba(255,186,208,.8);border-radius:3px;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.about-media .about-img-container:hover{transform:rotate(0) translateY(-6px);box-shadow:0 24px 46px rgba(194,56,94,.3)}
+
+/* ---- Favorite games ---- */
+.game-card{position:relative}
+.game-thumb{position:relative}
+.game-thumb::after{content:"View details";position:absolute;inset:0;display:grid;place-items:end center;padding-bottom:.9rem;background:linear-gradient(0deg,rgba(70,20,45,.72),rgba(70,20,45,0) 55%);color:#fff;font-weight:500;font-size:.9rem;letter-spacing:.06em;opacity:0;transition:opacity .3s}
+.game-card:hover .game-thumb::after{opacity:1}
+.game-card p{align-self:flex-start;display:inline-block;margin-top:.15rem;font-size:.8rem;padding:.15rem .75rem;border-radius:99px;background:#fff;border:1px solid rgba(194,56,94,.25);color:#7a3a50}
+.game-card:hover{box-shadow:0 18px 34px rgba(194,56,94,.22)}
+
+/* ---- Contacts ---- */
+#contact .panel{background:radial-gradient(circle at 96% 118%,rgba(242,154,180,.5),transparent 50%),linear-gradient(180deg,#fffafa 0%,#fdf0f3 100%)}
+.social-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:.9rem;margin-top:1.4rem}
+.social-btn{justify-content:flex-start;padding:1rem 1.2rem;border-radius:22px;background:#f7e8ec;border:1px solid rgba(194,56,94,.18);font-size:1rem}
+.social-btn svg{width:22px;height:22px;color:#c2385e;transition:color .2s}
+.social-btn::after{content:"\2197";margin-left:auto;opacity:.45;transition:transform .2s,opacity .2s}
+.social-btn:hover{background:linear-gradient(135deg,#e8809f,#c2385e);color:#fff;border-color:transparent;box-shadow:0 14px 28px rgba(194,56,94,.3)}
+.social-btn:hover svg{color:#fff}
+.social-btn:hover::after{opacity:1;transform:translate(3px,-3px)}
 </style>
 </head>
 <body>
 <div id="dusk" aria-hidden="true"></div>
 <canvas id="gl" aria-hidden="true"></canvas>
+<canvas id="gl2" aria-hidden="true"></canvas>
 <nav class="nav" aria-label="Sections">
   <b aria-hidden="true">✿</b>
   <a href="#profile" class="on">Profile</a><a href="#about">About Me</a><a href="#activities">Favorite Games</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
@@ -445,7 +583,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
     <div class="float profile-wrapper" data-d="14">
       <div class="bubble">
         <button class="profile-click-card" id="openProfileModal" aria-label="Enlarge profile picture">
-          <div class="frame has" id="frame"><img id="img" alt="romejay5.jpeg" src="romejay5.jpeg"></div>
+          <div class="frame has" id="frame"><img id="img" alt="Romejay San Juan" src="romejay5.jpeg"></div>
         </button>
       </div>
       <a class="cta-meet" href="#about">More About Me</a>
@@ -453,18 +591,22 @@ h1{font-weight:400}.sub{color:var(--ink)}
   </div>
 </div></section>
 
-<!-- Profile Picture Modal -->
+<!-- Profile Picture Modal with Left/Right Navigation -->
 <div class="image-modal" id="profileModal" aria-hidden="true">
   <div class="image-modal-content">
     <button class="image-modal-close" id="profileModalClose" aria-label="Close image">&times;</button>
-    <img src="romejay5.jpeg" alt="Romejay San Juan profile picture">
+    <button class="modal-nav-btn prev" id="profilePrev" aria-label="Previous picture">&#8249;</button>
+    <div class="modal-counter" id="profileCounter">1 / 4</div>
+    <img id="profileModalImg" src="romejay5.jpeg" alt="Romejay San Juan profile picture">
+    <button class="modal-nav-btn next" id="profileNext" aria-label="Next picture">&#8250;</button>
   </div>
 </div>
 
 <section id="about"><div class="wrap"><div class="panel about-grid">
   <div>
+    <span class="eyebrow">Who I am</span>
     <h2>ABOUT ME</h2>
-    <p>I'm a 3rd year BSIT student who loves combining technical skills and creative expression. My favorite moment is when something broken finally works.</p>
+    <p class="about-lead">I'm a 3rd year BSIT student who loves combining technical skills and creative expression. My favorite moment is when I'm not doing anything.</p>
     <p>When I'm not studying or coding, you can usually find me hitting the gym, gaming, drawing, or capturing moments through photography. I enjoy expressing myself through art, visual stories, and building cool things.</p>
   </div>
   <div class="about-media">
@@ -483,7 +625,9 @@ h1{font-weight:400}.sub{color:var(--ink)}
 </div>
 
 <section id="activities"><div class="wrap"><div class="panel">
+  <span class="eyebrow">Worlds I got lost in</span>
   <h2>MY FAVORITE GAMES</h2>
+  <p class="panel-sub">Click a card to peek inside the story.</p>
   <div class="games-grid">
     <div class="item game-card" data-title="Elden Ring" data-genre="Action RPG / Souls Like" data-synopsis="In the Lands Between ruled by Queen Marika the Eternal, the Elden Ring has been shattered. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord." data-details="Developer: FromSoftware | Released: 2022 | Platform: PC, PS, Xbox" data-img="elden-ring-button-03-1623460560664.jpg">
       <div class="game-thumb"><img src="elden-ring-button-03-1623460560664.jpg" alt="Elden Ring"></div>
@@ -552,18 +696,48 @@ h1{font-weight:400}.sub{color:var(--ink)}
 </div>
 
 <section id="projects"><div class="wrap"><div class="panel">
+  <span class="eyebrow">Small Projects</span>
   <h2>THINGS I'VE MADE</h2>
-  <div class="grid">
-    <div class="item"><h3>Semantic Blocks</h3><p>Semantic Blocks</p></div>
-    <div class="item"><h3>Personal Website</h3><p>Personal Website</p></div>
-    <div class="item"><h3>Landing Page</h3><p>Landing Page</p></div>
+  <p class="proj-sub">Website Development Laboratory Activities.</p>
+  <div class="proj-grid">
+
+    <a href="https://semantic-blocks.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj">
+      <div class="proj-shot"><div class="win"><i></i><i></i><i></i></div>
+        <div class="mock mock-blocks"><b>&lt;header&gt;</b><b>&lt;main&gt;</b><b>&lt;footer&gt;</b></div></div>
+      <div class="proj-body"><span class="proj-no">01</span><h3>Semantic Blocks</h3>
+        <p></p>
+        <div class="tags"><span>HTML</span><span>Semantics</span></div></div>
+    </a>
+
+    <a href="https://personal-website-practice-iota.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj">
+      <div class="proj-shot"><div class="win"><i></i><i></i><i></i></div>
+        <div class="mock mock-site"><em>&#10047;</em><u></u><u class="short"></u></div></div>
+      <div class="proj-body"><span class="proj-no">02</span><h3>Personal Website</h3>
+        <p></p>
+        <div class="tags"><span>HTML</span><span>CSS</span></div></div>
+    </a>
+
+    <a href="https://landing-page-practice-act.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj">
+      <div class="proj-shot"><div class="win"><i></i><i></i><i></i></div>
+        <div class="mock mock-land"><u></u><u class="short"></u><b>Get started</b></div></div>
+      <div class="proj-body"><span class="proj-no">03</span><h3>Landing Page</h3>
+        <p></p>
+        <div class="tags"><span>HTML</span><span>CSS</span></div></div>
+    </a>
+
+    <article class="proj proj-next">
+      <div><em>&#10047;</em><h3>Next one is growing</h3><p>Something new is in the works.</p></div>
+    </article>
+
   </div>
 </div></div></section>
 
 <section id="contact"><div class="wrap"><div class="panel">
+  <span class="eyebrow">MORE ABOUT ME</span>
   <h2>CONTACTS</h2>
-  <p>Want to know me better or simply just stalk me? Reach our through my socials below or drop me an email.</p>
+  <p>Want to know me better or just simply stalk me? Reach out through my socials below or drop me an email.</p>
   
+  <p class="panel-sub">I reply faster when you send me money... Mostly.</p>
   <div class="social-links">
     <a href="mailto:sanjuanromejay@gmail.com" class="social-btn" aria-label="Email Romejay">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
@@ -592,7 +766,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
 <footer class="site-footer">
   <div class="site-footer-content">
     <p><span class="heart">✿</span> by <strong>Romejay San Juan</strong></p>
-    <p class="site-footer-sub">&copy; <span id="year"></span> Romejay. All rights reserved.</p>
+    <p class="site-footer-sub">&copy; <span id="year"></span> San Juan. All rights reserved.</p>
   </div>
 </footer>
 
@@ -685,6 +859,40 @@ h1{font-weight:400}.sub{color:var(--ink)}
   }
   tree.add(bl);
 
+  // ---- Side branches: drawn on their own layer in front of the panels, so they can reach toward the middle ----
+  var renderer2=new THREE.WebGLRenderer({canvas:document.getElementById('gl2'),antialias:true,alpha:true});
+  renderer2.setPixelRatio(Math.min(devicePixelRatio,2));
+  var scene2=new THREE.Scene(),cam2=new THREE.PerspectiveCamera(50,1,.1,100);cam2.position.z=7;
+  scene2.add(new THREE.AmbientLight(0xffffff,.85));
+  var sun2=new THREE.DirectionalLight(0xfffae8,1.6);sun2.position.set(-5,8,3);scene2.add(sun2);
+  function V3(p){return new THREE.Vector3(p[0],p[1],p[2])}
+  function makeBranch(){
+    var g=new THREE.Group();
+    var r1=new THREE.CatmullRomCurve3([[11,-1.7,1],[8.4,-1.2,1.4],[5.6,-.3,1.2],[3,.8,.8],[1.1,1.4,.4]].map(V3));
+    var r2=new THREE.CatmullRomCurve3([[7.4,-.9,1.3],[6.6,.7,1],[5.6,2.0,.3]].map(V3));
+    var r3=new THREE.CatmullRomCurve3([[8.4,-1.4,1.3],[7.1,-2.3,1],[6.4,-3.2,.5]].map(V3));
+    var r4=new THREE.CatmullRomCurve3([[4.4,.1,1],[3.4,-.9,.8],[2.2,-1.4,.5]].map(V3));
+    g.add(new THREE.Mesh(tube(r1,80,.2,.04,12,11),bark));
+    g.add(new THREE.Mesh(tube(r2,40,.1,.04,10,13),bark));
+    g.add(new THREE.Mesh(tube(r3,40,.11,.04,10,17),bark));
+    g.add(new THREE.Mesh(tube(r4,30,.07,.025,8,19),bark));
+    var cv=[r1,r1,r1,r2,r3,r4],tw=[];
+    for(var i=0;i<26;i++){
+      var b2=cv[i%6].getPoint(Math.random()),e2=b2.clone().add(new THREE.Vector3((Math.random()-.7)*1.6,(Math.random()-.4)*1.8,(Math.random()-.5)*1.0)),
+          m2=b2.clone().lerp(e2,.5).add(new THREE.Vector3((Math.random()-.5)*.3,0,(Math.random()-.5)*.3)),tc2=new THREE.CatmullRomCurve3([b2,m2,e2]);
+      tw.push(tc2);g.add(new THREE.Mesh(tube(tc2,12,.036,.012,6,i+40),bark));
+      var kn2=new THREE.Mesh(new THREE.SphereGeometry(.05,8,6),bark);kn2.position.copy(b2);kn2.scale.set(1,.8,1);g.add(kn2)}
+    var NB=440,fl=new THREE.InstancedMesh(flowerGeo(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),NB);
+    for(var i=0;i<NB;i++){
+      var p2=(Math.random()<.75?tw[(Math.random()*tw.length)|0]:cv[(Math.random()*6)|0]).getPoint(Math.random());
+      d.position.set(p2.x+(Math.random()-.5)*.3,p2.y+(Math.random()-.5)*.25,p2.z+(Math.random()-.5)*.3);
+      d.scale.setScalar(.6+Math.random()*.6);d.rotation.set((Math.random()-.5)*1.6,(Math.random()-.5)*1.6,Math.random()*6);d.updateMatrix();
+      fl.setMatrixAt(i,d.matrix);fl.setColorAt(i,pal[i%4]);
+    }
+    g.add(fl);return g}
+  var tree2=makeBranch(),tree3=makeBranch();   // tree2: Favorite Games, tree3: Things I've made
+  scene2.add(tree2);scene2.add(tree3);
+
   var M=180,pet=new THREE.InstancedMesh(makePetal(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),M),S=[];
   for(var k=0;k<M;k++) {
     S.push({
@@ -702,7 +910,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
   for(var k=0;k<M;k++)pet.setColorAt(k,new THREE.Color().setHSL(.97,.5+Math.random()*.5,.86+Math.random()*.14));
   scene.add(pet);
 
-  function size(){renderer.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
+  function size(){renderer.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();renderer2.setSize(innerWidth,innerHeight,false);cam2.aspect=innerWidth/innerHeight;cam2.updateProjectionMatrix()}
   addEventListener('resize',size);size();
 
   function ease(x){return x*x*(3-2*x)}
@@ -1000,22 +1208,67 @@ h1{font-weight:400}.sub{color:var(--ink)}
     document.body.classList.toggle('night', sceneOpacity > .35);
 
     tree.position.y = scrollY * .004;
+    // side branches glide past "Favorite Games" and "Things I've made"
+    var favEl = document.getElementById('activities'), prjEl = document.getElementById('projects');
+    var favScroll = (favEl ? favEl.offsetTop : innerHeight * 3) + innerHeight * .35;
+    var prjScroll = (prjEl ? prjEl.offsetTop : innerHeight * 4) + innerHeight * .3;
+    tree2.position.y = 0.3 + (scrollY - favScroll) * .004;   // change 0.3 to move it up/down
+    tree3.position.y = 0.3 + (scrollY - prjScroll) * .004;
+    tree2.rotation.y = mx * .08;
+    tree3.rotation.y = mx * .08;
+    renderer2.domElement.style.opacity = 1 - Math.min(sceneOpacity * 4, 1);   // fade out before the sword scene
     tree.rotation.y = mx * .15;
     cam.position.x += (mx * .6 - cam.position.x) * .05;
     cam.position.y += (-my * .4 - cam.position.y) * .05;
     cam.lookAt(0, 0, 0);
 
     renderer.render(scene, cam);
+    cam2.position.copy(cam.position);cam2.lookAt(0, 0, 0);
+    renderer2.render(scene2, cam2);
     requestAnimationFrame(draw);
   }
 
-  // Profile Picture Modal Script
+  // Profile Picture Modal & Gallery Script
   var profileBtn = document.getElementById('openProfileModal'),
       profileModal = document.getElementById('profileModal'),
-      profileClose = document.getElementById('profileModalClose');
+      profileClose = document.getElementById('profileModalClose'),
+      profileModalImg = document.getElementById('profileModalImg'),
+      profilePrev = document.getElementById('profilePrev'),
+      profileNext = document.getElementById('profileNext'),
+      profileCounter = document.getElementById('profileCounter');
+
+  // Add all your profile pictures to this array!
+  var profileImages = [
+    "romejay5.jpeg",
+    "romejay6.jpeg",
+    "romejay7.jpeg",
+    "romejay8.jpeg"
+  ];
+  
+  var currentProfileIdx = 0;
+
+  function updateProfileImage() {
+    if (!profileImages || profileImages.length === 0) return;
+    profileModalImg.src = profileImages[currentProfileIdx];
+    if (profileCounter) {
+      profileCounter.textContent = (currentProfileIdx + 1) + " / " + profileImages.length;
+    }
+  }
+
+  function showNextProfile() {
+    currentProfileIdx = (currentProfileIdx + 1) % profileImages.length;
+    updateProfileImage();
+  }
+
+  function showPrevProfile() {
+    currentProfileIdx = (currentProfileIdx - 1 + profileImages.length) % profileImages.length;
+    updateProfileImage();
+  }
 
   if (profileBtn && profileModal) {
     function openProfileModal() {
+      currentProfileIdx = 0;
+      updateProfileImage();
       profileModal.classList.add('open');
       profileModal.setAttribute('aria-hidden', 'false');
     }
@@ -1031,14 +1284,32 @@ h1{font-weight:400}.sub{color:var(--ink)}
       }
     });
     profileClose.onclick = closeProfileModal;
+    
+    if (profilePrev) profilePrev.onclick = function(e) { e.stopPropagation(); showPrevProfile(); };
+    if (profileNext) profileNext.onclick = function(e) { e.stopPropagation(); showNextProfile(); };
+
     profileModal.onclick = function(e) {
-      if (e.target === profileModal) closeProfileModal();
+      if (e.target === profileModal || e.target.classList.contains('image-modal-content')) closeProfileModal();
     };
+
+    // Keyboard Arrow Controls
     addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && profileModal.classList.contains('open')) {
-        closeProfileModal();
-      }
+      if (!profileModal.classList.contains('open')) return;
+      if (e.key === 'ArrowRight') showNextProfile();
+      else if (e.key === 'ArrowLeft') showPrevProfile();
+      else if (e.key === 'Escape') closeProfileModal();
     });
+
+    // Touch Swipe Support for Mobile
+    var touchStartX = 0;
+    profileModal.addEventListener('touchstart', function(e) {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+    profileModal.addEventListener('touchend', function(e) {
+      var touchEndX = e.changedTouches[0].screenX;
+      if (touchEndX < touchStartX - 40) showNextProfile();
+      if (touchEndX > touchStartX + 40) showPrevProfile();
+    }, false);
   }
 
   var collageBtn = document.getElementById('openCollageModal'),
