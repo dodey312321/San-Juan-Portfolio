@@ -21,11 +21,62 @@ section{position:relative;z-index:1;min-height:100vh;display:flex;align-items:ce
 h1{font-weight:300;font-size:clamp(2.8rem,8vw,6.5rem);line-height:1;margin:0;letter-spacing:-.03em}
 h2{font-weight:500;font-size:clamp(1.8rem,4vw,3rem);line-height:1.1;margin:0 0 1rem;letter-spacing:-.02em}
 p{max-width:50ch;margin:.6rem 0}
-.nav{position:fixed;z-index:5;top:calc(.9rem + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);display:flex;gap:.2rem;align-items:center;padding:.3rem;border:1px solid var(--line);border-radius:18px;background:var(--glass);backdrop-filter:blur(14px);max-width:calc(100vw - 1rem);overflow-x:auto}
-.nav b{width:34px;height:34px;border-radius:12px;background:var(--card);color:var(--cink);display:grid;place-items:center;flex:none}
-.nav a{color:var(--ink);text-decoration:none;padding:.5rem .9rem;border-radius:12px;font-weight:500;font-size:.9rem;white-space:nowrap;transition:background .2s}
+.nav{position:fixed;z-index:5;top:calc(.9rem + env(safe-area-inset-top,0px));left:50%;transform:translateX(-50%);display:flex;gap:.2rem;align-items:center;padding:.3rem;border:1px solid var(--line);border-radius:18px;background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);box-shadow:0 8px 24px rgba(0,0,0,.08);max-width:calc(100vw - 1rem);overflow-x:auto}
+.nav b{width:34px;height:34px;border-radius:12px;background:var(--card);color:var(--cink);display:grid;place-items:center;flex:none;box-shadow:0 2px 8px rgba(0,0,0,.06)}
+.nav a{color:var(--ink);text-decoration:none;padding:.5rem .9rem;border-radius:12px;font-weight:500;font-size:.9rem;white-space:nowrap;transition:background .2s,color .2s,box-shadow .2s}
 .nav a:hover{background:var(--line)}
-.nav a.on{background:var(--card);color:var(--cink)}
+.nav a.on{background:var(--card);color:var(--cink);box-shadow:0 3px 10px rgba(0,0,0,.08)}
+
+/* Dark-mode navbar: stronger contrast against the dark background */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .nav{
+    background:rgba(24,18,30,.82);
+    border-color:rgba(255,255,255,.28);
+    box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 1px rgba(255,179,198,.06);
+  }
+  :root:not([data-theme="light"]) .nav b{
+    background:rgba(255,255,255,.12);
+    color:#ffe8ee;
+    border:1px solid rgba(255,255,255,.16);
+  }
+  :root:not([data-theme="light"]) .nav a{
+    color:#fff5f7;
+  }
+  :root:not([data-theme="light"]) .nav a:hover{
+    background:rgba(255,255,255,.12);
+    color:#ffffff;
+  }
+  :root:not([data-theme="light"]) .nav a.on{
+    background:rgba(255,179,198,.22);
+    color:#ffffff;
+    border:1px solid rgba(255,179,198,.35);
+    box-shadow:0 4px 14px rgba(0,0,0,.25),0 0 12px rgba(255,179,198,.08);
+  }
+}
+
+:root[data-theme="dark"] .nav{
+  background:rgba(24,18,30,.82);
+  border-color:rgba(255,255,255,.28);
+  box-shadow:0 10px 30px rgba(0,0,0,.35),0 0 0 1px rgba(255,179,198,.06);
+}
+:root[data-theme="dark"] .nav b{
+  background:rgba(255,255,255,.12);
+  color:#ffe8ee;
+  border:1px solid rgba(255,255,255,.16);
+}
+:root[data-theme="dark"] .nav a{
+  color:#fff5f7;
+}
+:root[data-theme="dark"] .nav a:hover{
+  background:rgba(255,255,255,.12);
+  color:#ffffff;
+}
+:root[data-theme="dark"] .nav a.on{
+  background:rgba(255,179,198,.22);
+  color:#ffffff;
+  border:1px solid rgba(255,179,198,.35);
+  box-shadow:0 4px 14px rgba(0,0,0,.25),0 0 12px rgba(255,179,198,.08);
+}
 a:focus-visible,button:focus-visible,.frame:focus-visible,.about-img-container:focus-visible,.profile-click-card:focus-visible{outline:3px solid var(--acc);outline-offset:3px}
 .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:2rem;align-items:center}
 .sub{font-size:1.15rem;color:var(--mute);margin-top:1.2rem}
@@ -91,7 +142,13 @@ body.night{--halo:rgba(24,15,30,.92);--ink:#fbeef0;--mute:#d8c5cd;--glass:rgba(2
 #end{min-height:80vh;align-items:flex-start;padding-top:10vh}
 h1,.sub{text-shadow:0 0 12px var(--halo),0 0 28px var(--halo),0 2px 3px var(--halo)}
 h1{font-weight:400}.sub{color:var(--ink)}
-@media (max-width:800px){.hero{grid-template-columns:1fr}.stage{min-height:420px}}
+@media (max-width:800px){
+  .hero{grid-template-columns:1fr}
+  .stage{min-height:420px}
+  .nav{gap:.1rem;padding:.25rem;border-radius:16px}
+  .nav a{padding:.48rem .72rem;font-size:.84rem}
+  .nav b{width:32px;height:32px}
+}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
 .about-grid {
@@ -562,15 +619,70 @@ h1{font-weight:400}.sub{color:var(--ink)}
 .social-btn:hover{background:linear-gradient(135deg,#e8809f,#c2385e);color:#fff;border-color:transparent;box-shadow:0 14px 28px rgba(194,56,94,.3)}
 .social-btn:hover svg{color:#fff}
 .social-btn:hover::after{opacity:1;transform:translate(3px,-3px)}
+
+/* ---- Loader, progress, hint ---- */
+body.loading{overflow:hidden}
+#loader{position:fixed;inset:0;z-index:300;display:grid;place-content:center;justify-items:center;gap:1.6rem;background:#2b2030;color:#fbeef0;transition:opacity .7s ease,visibility .7s}
+#loader.done{opacity:0;visibility:hidden}
+#loader p{margin:0;font-weight:300;letter-spacing:.3em;text-transform:uppercase;font-size:.85rem;opacity:0;animation:ldfade .8s .6s forwards}
+.bloom{position:relative;width:90px;height:90px}
+.bloom i{position:absolute;left:50%;top:50%;width:34px;height:48px;margin:-48px 0 0 -17px;border-radius:60% 60% 50% 50%/70% 70% 40% 40%;background:linear-gradient(180deg,#ffe0e8,#f29ab4);transform-origin:50% 100%;transform:rotate(calc(var(--k)*72deg)) scale(0);animation:bloom 1s cubic-bezier(.3,1.5,.5,1) forwards;animation-delay:calc(var(--k)*.11s)}
+.bloom i:nth-child(1){--k:0}.bloom i:nth-child(2){--k:1}.bloom i:nth-child(3){--k:2}.bloom i:nth-child(4){--k:3}.bloom i:nth-child(5){--k:4}
+.bloom b{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px;border-radius:50%;background:#ffd166;transform:scale(0);animation:bloom .6s .7s forwards}
+@keyframes bloom{to{transform:rotate(calc(var(--k,0)*72deg)) scale(1)}}
+@keyframes ldfade{to{opacity:.85}}
+#progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#f29ab4,#d9466f);pointer-events:none}
+.hint{opacity:.7;font-size:.9rem;letter-spacing:.08em}
+@media (prefers-reduced-motion:reduce){.bloom i{animation:none;transform:rotate(calc(var(--k)*72deg)) scale(1)}.bloom b{animation:none;transform:scale(1)}#loader p{animation:none;opacity:.85}.game-card.reveal-in{animation:none}}
+@media (scripting:none){#loader{display:none}}
+
+/* ---- Journey timeline: a branch that grows ---- */
+.tl{--grow:0;position:relative;list-style:none;margin:1.8rem 0 .4rem;padding:0 0 0 3.2rem}
+.tl::before,.tl::after{content:"";position:absolute;left:15px;top:8px;width:5px;border-radius:5px}
+.tl::before{bottom:8px;background:rgba(107,74,58,.18)}
+.tl::after{height:calc((100% - 16px)*var(--grow));background:linear-gradient(180deg,#8b6a58,#5a3f32)}
+.tl li{position:relative;margin-bottom:1.5rem}.tl li:last-child{margin-bottom:0}
+.tl-dot{position:absolute;left:-3.2rem;top:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#fff;border:2px solid #f2b6c6;color:#e7b3c1;font-size:1.1rem;transform:scale(.7);transition:transform .7s cubic-bezier(.3,1.6,.5,1),color .4s,border-color .4s,box-shadow .4s}
+.tl li.on .tl-dot{transform:scale(1) rotate(72deg);color:#d9466f;border-color:#d9466f;box-shadow:0 0 0 6px rgba(242,154,180,.25)}
+.tl-card{background:#f7e8ec;border-radius:20px;padding:1rem 1.2rem;opacity:.45;transform:translateX(10px);transition:opacity .5s,transform .5s}
+.tl li.on .tl-card{opacity:1;transform:none}
+.tl-card small{font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#c2385e}
+.tl-card h3{margin:.15rem 0 .2rem;font-size:1.2rem;font-weight:500}.tl-card p{margin:0;font-size:.95rem}
+
+/* ---- Skills ---- */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem;margin-top:1.4rem}
+.skill-group{background:#f7e8ec;border-radius:24px;padding:1.2rem 1.3rem}
+.skill-group h3{margin:0 0 .8rem;font-size:1.1rem;font-weight:500}
+.skill{display:flex;justify-content:space-between;align-items:center;gap:.8rem;padding:.45rem .9rem;border-radius:99px;background:#fff;margin-bottom:.5rem;border:1px solid rgba(194,56,94,.15);transition:transform .2s}
+.skill:last-child{margin-bottom:0}.skill:hover{transform:translateX(4px)}
+.lv{--n:3;font-style:normal;font-size:.95rem;letter-spacing:.12em;background:linear-gradient(90deg,#d9466f calc(var(--n)*20%),#ecd2d9 0);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---- Games: filters + staggered reveal ---- */
+.filters{display:flex;flex-wrap:wrap;gap:.5rem;margin:0 0 1.2rem}
+.fchip{font:inherit;font-size:.85rem;font-weight:500;padding:.35rem 1rem;border-radius:99px;border:1px solid rgba(194,56,94,.3);background:#fff;color:#7a3a50;cursor:pointer;transition:background .2s,color .2s,transform .2s}
+.fchip:hover{transform:translateY(-2px)}.fchip.on{background:#c2385e;color:#fff;border-color:#c2385e}
+.fchip:focus-visible{outline:3px solid #d9466f;outline-offset:2px}
+.game-card.is-hidden{display:none!important}
+.game-card.pre{opacity:0}
+.game-card.reveal-in{animation:cardIn .6s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i,0)*80ms)}
+@keyframes cardIn{from{opacity:0;transform:translateY(26px) scale(.97)}}
+
+/* ---- Projects: real screenshot on hover ---- */
+.proj-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top;opacity:0;transition:opacity .4s;z-index:1}
+.proj:hover .proj-img,.proj:focus-visible .proj-img{opacity:1}
+.proj-shot .win{position:relative;z-index:2}
+@media (hover:none){.proj-img{opacity:1}}
 </style>
 </head>
 <body>
+<div id="progress" aria-hidden="true"></div>
+<div id="loader" aria-hidden="true"><div class="bloom"><i></i><i></i><i></i><i></i><i></i><b></b></div><p>Romejay San Juan</p></div>
 <div id="dusk" aria-hidden="true"></div>
 <canvas id="gl" aria-hidden="true"></canvas>
 <canvas id="gl2" aria-hidden="true"></canvas>
 <nav class="nav" aria-label="Sections">
   <b aria-hidden="true">✿</b>
-  <a href="#profile" class="on">Profile</a><a href="#about">About Me</a><a href="#activities">Favorite Games</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
+  <a href="#profile" class="on">Profile</a><a href="#about">About Me</a><a href="#journey">Journey</a><a href="#skills">Skills</a><a href="#activities">Favorite Games</a><a href="#projects">Projects</a><a href="#contact">Contact</a>
 </nav>
 <button class="theme" id="theme" aria-label="Switch light or dark theme">Light / Dark</button>
 
@@ -624,10 +736,41 @@ h1{font-weight:400}.sub{color:var(--ink)}
   </div>
 </div>
 
+<section id="journey"><div class="wrap"><div class="panel">
+  <span class="eyebrow">How I got here</span>
+  <h2>MY JOURNEY THIS 3RD YEAR</h2>
+  <ol class="tl">
+    <li><span class="tl-dot">&#10047;</span><div class="tl-card"><small>1st Month</small><h3>Learned HTML and CSS</h3><p>My first lines of code, and my first "why is this not working?"</p></div></li>
+    <li><span class="tl-dot">&#10047;</span><div class="tl-card"><small>2nd Month</small><h3>Tried Developing</h3><p>HTML, CSS, JavaScript and a lot of Googling.</p></div></li>
+    <li><span class="tl-dot">&#10047;</span><div class="tl-card"><small>3rd - 4th Month</small><h3>Website Development Lab</h3><p>Built Semantic Blocks, a Personal Website and a Landing Page.</p></div></li>
+    <li><span class="tl-dot">&#10047;</span><div class="tl-card"><small>Now</small><h3>3rd year BSIT, section 31B</h3><p>Building this portfolio and other stuff.</p></div></li>
+  </ol>
+</div></div></section>
+
+<section id="skills"><div class="wrap"><div class="panel">
+  <span class="eyebrow">What I work with</span>
+  <h2>MY SKILLS</h2>
+  <div class="skills-grid">
+    <div class="skill-group"><h3>Web</h3>
+      <div class="skill"><span>HTML</span><i class="lv" style="--n:4">&#10047;&#10047;&#10047;&#10047;&#10047;</i></div>
+      <div class="skill"><span>CSS</span><i class="lv" style="--n:4">&#10047;&#10047;&#10047;&#10047;&#10047;</i></div>
+      <div class="skill"><span>JavaScript</span><i class="lv" style="--n:2">&#10047;&#10047;&#10047;&#10047;&#10047;</i></div></div>
+    <div class="skill-group"><h3>Tools</h3>
+      <div class="skill"><span>Git &amp; GitHub</span><i class="lv" style="--n:3">&#10047;&#10047;&#10047;&#10047;&#10047;</i></div>
+      <div class="skill"><span>VS Code</span><i class="lv" style="--n:4">&#10047;&#10047;&#10047;&#10047;&#10047;</i></div>
+      <div class="skill"><span>Vercel</span><i class="lv" style="--n:3">&#10047;&#10047;&#10047;&#10047;&#10047;</i></div></div>
+    <div class="skill-group"><h3>Creative &amp; Learning</h3>
+      <div class="skill"><span>Drawing</span><i class="lv" style="--n:4">&#10047;&#10047;&#10047;&#10047;&#10047;</i></div>
+      <div class="skill"><span>Photography</span><i class="lv" style="--n:3">&#10047;&#10047;&#10047;&#10047;&#10047;</i></div>
+      <div class="skill"><span>Databases</span><i class="lv" style="--n:2">&#10047;&#10047;&#10047;&#10047;&#10047;</i></div></div>
+  </div>
+</div></div></section>
+
 <section id="activities"><div class="wrap"><div class="panel">
   <span class="eyebrow">Worlds I got lost in</span>
   <h2>MY FAVORITE GAMES</h2>
   <p class="panel-sub">Click a card to peek inside the story.</p>
+  <div class="filters" role="group" aria-label="Filter games"><button class="fchip on" data-f="all">All</button><button class="fchip" data-f="jrpg">JRPG</button><button class="fchip" data-f="rpg">RPG</button><button class="fchip" data-f="story">Story-driven</button></div>
   <div class="games-grid">
     <div class="item game-card" data-title="Elden Ring" data-genre="Action RPG / Souls Like" data-synopsis="In the Lands Between ruled by Queen Marika the Eternal, the Elden Ring has been shattered. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord." data-details="Developer: FromSoftware | Released: 2022 | Platform: PC, PS, Xbox" data-img="elden-ring-button-03-1623460560664.jpg">
       <div class="game-thumb"><img src="elden-ring-button-03-1623460560664.jpg" alt="Elden Ring"></div>
@@ -702,7 +845,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
   <div class="proj-grid">
 
     <a href="https://semantic-blocks.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj">
-      <div class="proj-shot"><div class="win"><i></i><i></i><i></i></div>
+      <div class="proj-shot"><img class="proj-img" src="https://image.thum.io/get/width/700/crop/430/https://semantic-blocks.vercel.app/" alt="Screenshot of Semantic Blocks" loading="lazy" onerror="this.remove()"><div class="win"><i></i><i></i><i></i></div>
         <div class="mock mock-blocks"><b>&lt;header&gt;</b><b>&lt;main&gt;</b><b>&lt;footer&gt;</b></div></div>
       <div class="proj-body"><span class="proj-no">01</span><h3>Semantic Blocks</h3>
         <p></p>
@@ -710,7 +853,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
     </a>
 
     <a href="https://personal-website-practice-iota.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj">
-      <div class="proj-shot"><div class="win"><i></i><i></i><i></i></div>
+      <div class="proj-shot"><img class="proj-img" src="https://image.thum.io/get/width/700/crop/430/https://personal-website-practice-iota.vercel.app/" alt="Screenshot of Personal Website" loading="lazy" onerror="this.remove()"><div class="win"><i></i><i></i><i></i></div>
         <div class="mock mock-site"><em>&#10047;</em><u></u><u class="short"></u></div></div>
       <div class="proj-body"><span class="proj-no">02</span><h3>Personal Website</h3>
         <p></p>
@@ -718,7 +861,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
     </a>
 
     <a href="https://landing-page-practice-act.vercel.app/" target="_blank" rel="noopener noreferrer" class="proj">
-      <div class="proj-shot"><div class="win"><i></i><i></i><i></i></div>
+      <div class="proj-shot"><img class="proj-img" src="https://image.thum.io/get/width/700/crop/430/https://landing-page-practice-act.vercel.app/" alt="Screenshot of Landing Page" loading="lazy" onerror="this.remove()"><div class="win"><i></i><i></i><i></i></div>
         <div class="mock mock-land"><u></u><u class="short"></u><b>Get started</b></div></div>
       <div class="proj-body"><span class="proj-no">03</span><h3>Landing Page</h3>
         <p></p>
@@ -761,7 +904,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
   </div>
 </div></div></section>
 
-<section id="end"><div class="wrap"><h2>Thanks for the visit.</h2><p>In the heart of a rusted world, life finds a way to blossom through the stone.</p></div></section>
+<section id="end"><div class="wrap"><h2>Thanks for the visit.</h2><p>In the heart of a rusted world, life finds a way to blossom through the stone.</p><p class="hint">Psst. Click the sword.</p></div></section>
 
 <footer class="site-footer">
   <div class="site-footer-content">
@@ -792,7 +935,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
 
   if(!window.THREE)return;
   var renderer=new THREE.WebGLRenderer({canvas:document.getElementById('gl'),antialias:true,alpha:true});
-  renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?1.5:2));
   var scene=new THREE.Scene(),cam=new THREE.PerspectiveCamera(50,1,.1,100);cam.position.z=7;
   scene.add(new THREE.AmbientLight(0xffffff,.85));
   
@@ -848,7 +991,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
         m=base.clone().lerp(e,.5).add(new THREE.Vector3((Math.random()-.5)*.3,0,(Math.random()-.5)*.3)),tc=new THREE.CatmullRomCurve3([base,m,e]);
     twigs.push(tc);tree.add(new THREE.Mesh(tube(tc,12,.038,.012,6,i),bark));var kn=new THREE.Mesh(new THREE.SphereGeometry(.05,8,6),bark);kn.position.copy(base);kn.scale.set(1,.8,1);tree.add(kn)}
 
-  var N=480,bl=new THREE.InstancedMesh(flowerGeo(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),N),d=new THREE.Object3D();
+  var N=(innerWidth<700?260:480),bl=new THREE.InstancedMesh(flowerGeo(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),N),d=new THREE.Object3D();
   var pal=['#ffffff','#fff5f7','#ffeaf0','#ffe0e9'].map(function(c){return new THREE.Color(c)});
   function pick(){return Math.random()<.75?twigs[(Math.random()*twigs.length)|0]:curves[(Math.random()*5)|0]}
   for(var i=0;i<N;i++){
@@ -861,11 +1004,12 @@ h1{font-weight:400}.sub{color:var(--ink)}
 
   // ---- Side branches: drawn on their own layer in front of the panels, so they can reach toward the middle ----
   var renderer2=new THREE.WebGLRenderer({canvas:document.getElementById('gl2'),antialias:true,alpha:true});
-  renderer2.setPixelRatio(Math.min(devicePixelRatio,2));
+  renderer2.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?1.5:2));
   var scene2=new THREE.Scene(),cam2=new THREE.PerspectiveCamera(50,1,.1,100);cam2.position.z=7;
   scene2.add(new THREE.AmbientLight(0xffffff,.85));
   var sun2=new THREE.DirectionalLight(0xfffae8,1.6);sun2.position.set(-5,8,3);scene2.add(sun2);
   function V3(p){return new THREE.Vector3(p[0],p[1],p[2])}
+  var flowMats=[];
   function makeBranch(){
     var g=new THREE.Group();
     var r1=new THREE.CatmullRomCurve3([[11,-1.7,1],[8.4,-1.2,1.4],[5.6,-.3,1.2],[3,.8,.8],[1.1,1.4,.4]].map(V3));
@@ -882,18 +1026,18 @@ h1{font-weight:400}.sub{color:var(--ink)}
           m2=b2.clone().lerp(e2,.5).add(new THREE.Vector3((Math.random()-.5)*.3,0,(Math.random()-.5)*.3)),tc2=new THREE.CatmullRomCurve3([b2,m2,e2]);
       tw.push(tc2);g.add(new THREE.Mesh(tube(tc2,12,.036,.012,6,i+40),bark));
       var kn2=new THREE.Mesh(new THREE.SphereGeometry(.05,8,6),bark);kn2.position.copy(b2);kn2.scale.set(1,.8,1);g.add(kn2)}
-    var NB=440,fl=new THREE.InstancedMesh(flowerGeo(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),NB);
+    var NB=(innerWidth<700?60:440),fl=new THREE.InstancedMesh(flowerGeo(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),NB);
     for(var i=0;i<NB;i++){
       var p2=(Math.random()<.75?tw[(Math.random()*tw.length)|0]:cv[(Math.random()*6)|0]).getPoint(Math.random());
       d.position.set(p2.x+(Math.random()-.5)*.3,p2.y+(Math.random()-.5)*.25,p2.z+(Math.random()-.5)*.3);
       d.scale.setScalar(.6+Math.random()*.6);d.rotation.set((Math.random()-.5)*1.6,(Math.random()-.5)*1.6,Math.random()*6);d.updateMatrix();
       fl.setMatrixAt(i,d.matrix);fl.setColorAt(i,pal[i%4]);
     }
-    g.add(fl);return g}
+    flowMats.push(fl.material);g.add(fl);return g}
   var tree2=makeBranch(),tree3=makeBranch();   // tree2: Favorite Games, tree3: Things I've made
   scene2.add(tree2);scene2.add(tree3);
 
-  var M=180,pet=new THREE.InstancedMesh(makePetal(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),M),S=[];
+  var M=(innerWidth<700?90:180),pet=new THREE.InstancedMesh(makePetal(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),M),S=[];
   for(var k=0;k<M;k++) {
     S.push({
       x:(Math.random()-.5)*14,
@@ -1151,12 +1295,22 @@ h1{font-weight:400}.sub{color:var(--ink)}
     guardMat, rivetMat, hiltMat, leafMat, yellowFlowerMat, whiteFlowerMat
   ];
 
+  var themeTick=0,lastLight=null,sceneNow=0,ray=new THREE.Raycaster();
+  function isLight(){var a=document.documentElement.getAttribute('data-theme');return a?a==='light':!matchMedia('(prefers-color-scheme: dark)').matches}
+  // click the sword: a burst of petals
+  addEventListener('click',function(e){
+    if(reduce||sceneNow<.6)return;
+    ray.setFromCamera(new THREE.Vector2(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1),cam);
+    if(!ray.intersectObject(sw,true).length)return;
+    for(var n=0;n<80;n++){var st=S[(Math.random()*M)|0];st.x=(Math.random()-.5)*.8;st.y=sw.position.y+1.6+Math.random()*1.2;st.z=(Math.random()-.5)*.8;st.vx=(Math.random()-.5)*.14;st.vy=.06+Math.random()*.08}
+  });
   function draw(){
     if(!reduce) t += .01;
 
     for(var k=0; k<M; k++){
       var st = S[k];
       if(!reduce){
+        if(st.vy){st.y+=st.vy;st.x+=st.vx;st.vy-=.0035;if(st.vy<0)st.vy=0}
         st.y -= st.v;
         st.x += Math.sin(t * st.f + st.ph) * 0.015;
         st.z += Math.cos(t * st.f * 0.7 + st.ph) * 0.008;
@@ -1175,6 +1329,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
       pet.setMatrixAt(k, d.matrix);
     }
     pet.instanceMatrix.needsUpdate = true;
+    if((themeTick=(themeTick+1)%20)===0){var lt=isLight();if(lt!==lastLight){lastLight=lt;var tcol=lt?0xffbfd0:0xffffff;pet.material.color.setHex(tcol);bl.material.color.setHex(tcol);flowMats.forEach(function(mm){mm.color.setHex(tcol)})}}
 
     var contactEl = document.getElementById('contact');
     var footerEl = document.querySelector('.site-footer');
@@ -1196,6 +1351,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
 
     sw.position.y = -8 + 6.6 * sceneOpacity;
     sw.visible = sceneOpacity > 0.001;
+    sceneNow = sceneOpacity;
 
     for (var m = 0; m < fadeMaterials.length; m++) {
       fadeMaterials[m].opacity = sceneOpacity;
@@ -1224,7 +1380,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
 
     renderer.render(scene, cam);
     cam2.position.copy(cam.position);cam2.lookAt(0, 0, 0);
-    renderer2.render(scene2, cam2);
+    if(innerWidth>=700)renderer2.render(scene2, cam2);
     requestAnimationFrame(draw);
   }
 
@@ -1373,6 +1529,45 @@ h1{font-weight:400}.sub{color:var(--ink)}
   addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
 
   draw();
+})();
+</script>
+<script>
+(function(){
+  // loading screen
+  var t0=performance.now(),ld=document.getElementById('loader');
+  function hide(){if(!ld||ld.classList.contains('done'))return;ld.classList.add('done');document.body.classList.remove('loading');setTimeout(function(){ld.remove()},800)}
+  document.body.classList.add('loading');
+  addEventListener('load',function(){setTimeout(hide,Math.max(0,1500-(performance.now()-t0)))});
+  setTimeout(hide,4500);
+
+  // scroll progress, nav follow, growing branch
+  var bar=document.getElementById('progress'),nav=document.querySelector('.nav'),tl=document.querySelector('.tl'),
+      items=tl?[].slice.call(tl.children):[],lastOn=null;
+  function onScroll(){
+    var max=document.documentElement.scrollHeight-innerHeight;
+    bar.style.transform='scaleX('+(max>0?Math.min(scrollY/max,1):0)+')';
+    var on=nav.querySelector('a.on');
+    if(on&&on!==lastOn&&nav.scrollWidth>nav.clientWidth)nav.scrollLeft=on.offsetLeft-nav.clientWidth/2+on.offsetWidth/2;
+    lastOn=on;
+    if(tl){var r=tl.getBoundingClientRect(),line=innerHeight*.62,p=Math.min(Math.max((line-r.top)/r.height,0),1);
+      tl.style.setProperty('--grow',p);
+      items.forEach(function(li){li.classList.toggle('on',r.top+li.offsetTop+18<line)})}
+  }
+  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
+
+  // games: staggered reveal + filters
+  var grid=document.querySelector('.games-grid'),cards=grid?[].slice.call(grid.querySelectorAll('.game-card')):[];
+  function play(){var i=0;cards.forEach(function(c){if(c.classList.contains('is-hidden'))return;c.classList.remove('pre','reveal-in');void c.offsetWidth;c.style.setProperty('--i',i++);c.classList.add('reveal-in')})}
+  cards.forEach(function(c){c.classList.add('pre')});
+  if(grid)new IntersectionObserver(function(es,o){if(es[0].isIntersecting){play();o.disconnect()}},{threshold:.1}).observe(grid);
+  var chips=[].slice.call(document.querySelectorAll('.fchip'));
+  chips.forEach(function(b){b.addEventListener('click',function(){
+    chips.forEach(function(x){x.classList.toggle('on',x===b)});
+    var f=b.dataset.f;
+    cards.forEach(function(c){var g=(c.dataset.genre||'').toLowerCase();
+      var ok=f==='all'||(f==='jrpg'&&g.indexOf('jrpg')>-1)||(f==='rpg'&&g.indexOf('rpg')>-1)||(f==='story'&&/narrative|drama/.test(g));
+      c.classList.toggle('is-hidden',!ok)});
+    play()})});
 })();
 </script>
 </body>
