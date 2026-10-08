@@ -27,7 +27,7 @@ p{max-width:50ch;margin:.6rem 0}
 .nav a:hover{background:var(--line)}
 .nav a.on{background:var(--card);color:var(--cink);box-shadow:0 3px 10px rgba(0,0,0,.08)}
 
-/* Dark-mode navbar: stronger contrast against the dark background */
+/* Dark-mode navbar */
 @media (prefers-color-scheme:dark){
   :root:not([data-theme="light"]) .nav{
     background:rgba(24,18,30,.82);
@@ -127,7 +127,7 @@ a:focus-visible,button:focus-visible,.frame:focus-visible,.about-img-container:f
 }
 
 .frame{width:260px;aspect-ratio:3/4;border-radius:24px;background:#f2dfe3;display:grid;place-items:center;text-align:center;overflow:hidden;color:#7a5f6c;font-size:.9rem;padding:.8rem;border:2px dashed #d9466f;transition: box-shadow 0.3s ease;}
-.frame img{width:100%;height:100%;object-fit:cover;display:none}
+.frame img{width:100%;height:100%;object-fit:cover;display:block}
 .frame.has{border:0;padding:0}.frame.has img{display:block}.frame.has span{display:none}
 .note{width:200px}.note small{color:#7a5f6c}.note h3{margin:.1rem 0 0;font-weight:500;font-size:1.1rem}
 .stat{font-size:.85rem;color:var(--mute);line-height:1.3}.stat b{display:block;color:var(--ink);font-weight:500}
@@ -636,18 +636,18 @@ body.loading{overflow:hidden}
 @media (prefers-reduced-motion:reduce){.bloom i{animation:none;transform:rotate(calc(var(--k)*72deg)) scale(1)}.bloom b{animation:none;transform:scale(1)}#loader p{animation:none;opacity:.85}.game-card.reveal-in{animation:none}}
 @media (scripting:none){#loader{display:none}}
 
-/* ---- Journey timeline: a branch that grows ---- */
+/* ---- Journey timeline: updated look & behavior ---- */
 .tl{--grow:0;position:relative;list-style:none;margin:1.8rem 0 .4rem;padding:0 0 0 3.2rem}
 .tl::before,.tl::after{content:"";position:absolute;left:15px;top:8px;width:5px;border-radius:5px}
 .tl::before{bottom:8px;background:rgba(107,74,58,.18)}
-.tl::after{height:calc((100% - 16px)*var(--grow));background:linear-gradient(180deg,#8b6a58,#5a3f32)}
+.tl::after{height:calc((100% - 16px)*var(--grow));background:linear-gradient(180deg,#d9466f,#8b6a58);transition:height 0.4s ease-out}
 .tl li{position:relative;margin-bottom:1.5rem}.tl li:last-child{margin-bottom:0}
-.tl-dot{position:absolute;left:-3.2rem;top:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#fff;border:2px solid #f2b6c6;color:#e7b3c1;font-size:1.1rem;transform:scale(.7);transition:transform .7s cubic-bezier(.3,1.6,.5,1),color .4s,border-color .4s,box-shadow .4s}
-.tl li.on .tl-dot{transform:scale(1) rotate(72deg);color:#d9466f;border-color:#d9466f;box-shadow:0 0 0 6px rgba(242,154,180,.25)}
-.tl-card{background:#f7e8ec;border-radius:20px;padding:1rem 1.2rem;opacity:.45;transform:translateX(10px);transition:opacity .5s,transform .5s}
-.tl li.on .tl-card{opacity:1;transform:none}
+.tl-dot{position:absolute;left:-3.2rem;top:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:#fff;border:2px solid #f2b6c6;color:#e7b3c1;font-size:1.1rem;transform:scale(.85);transition:transform .5s cubic-bezier(.3,1.6,.5,1),color .4s,border-color .4s,box-shadow .4s,background .4s}
+.tl li.on .tl-dot{transform:scale(1.1) rotate(72deg);color:#d9466f;border-color:#d9466f;box-shadow:0 0 0 6px rgba(242,154,180,.35)}
+.tl-card{background:#f7e8ec;border-radius:20px;padding:1rem 1.2rem;opacity:.85;transform:translateX(5px);transition:opacity .4s ease,transform .4s ease,box-shadow .4s ease,background .4s ease;border:1px solid rgba(194,56,94,.1)}
+.tl li.on .tl-card{opacity:1;transform:none;box-shadow:0 10px 25px rgba(217,70,111,.15);border-color:rgba(217,70,111,.3);background:#fff2f5}
 .tl-card small{font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#c2385e}
-.tl-card h3{margin:.15rem 0 .2rem;font-size:1.2rem;font-weight:500}.tl-card p{margin:0;font-size:.95rem}
+.tl-card h3{margin:.15rem 0 .2rem;font-size:1.2rem;font-weight:500;color:var(--cink)}.tl-card p{margin:0;font-size:.95rem;color:#5f4652}
 
 /* ---- Skills ---- */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem;margin-top:1.4rem}
@@ -674,7 +674,7 @@ body.loading{overflow:hidden}
 @media (hover:none){.proj-img{opacity:1}}
 </style>
 </head>
-<body>
+<body class="loading">
 <div id="progress" aria-hidden="true"></div>
 <div id="loader" aria-hidden="true"><div class="bloom"><i></i><i></i><i></i><i></i><i></i><b></b></div><p>Romejay San Juan</p></div>
 <div id="dusk" aria-hidden="true"></div>
@@ -718,7 +718,7 @@ body.loading{overflow:hidden}
   <div>
     <span class="eyebrow">Who I am</span>
     <h2>ABOUT ME</h2>
-    <p class="about-lead">I'm a 3rd year BSIT student who loves combining technical skills and creative expression. My favorite moment is when I'm not doing anything.</p>
+    <p class="about-lead">I'm a 3rd year BSIT student who loves combining technical skills and my creative expression. My favorite moment is when I'm not doing anything.</p>
     <p>When I'm not studying or coding, you can usually find me hitting the gym, gaming, drawing, or capturing moments through photography. I enjoy expressing myself through art, visual stories, and building cool things.</p>
   </div>
   <div class="about-media">
@@ -740,7 +740,7 @@ body.loading{overflow:hidden}
   <span class="eyebrow">How I got here</span>
   <h2>MY JOURNEY THIS 3RD YEAR</h2>
   <ol class="tl">
-    <li><span class="tl-dot">&#10047;</span><div class="tl-card"><small>1st Month</small><h3>Learned HTML and CSS</h3><p>My first lines of code, and my first "why is this not working?"</p></div></li>
+    <li class="on"><span class="tl-dot">&#10047;</span><div class="tl-card"><small>1st Month</small><h3>Learned HTML and CSS</h3><p>My first lines of code, and my first "why is this not working?"</p></div></li>
     <li><span class="tl-dot">&#10047;</span><div class="tl-card"><small>2nd Month</small><h3>Tried Developing</h3><p>HTML, CSS, JavaScript and a lot of Googling.</p></div></li>
     <li><span class="tl-dot">&#10047;</span><div class="tl-card"><small>3rd - 4th Month</small><h3>Website Development Lab</h3><p>Built Semantic Blocks, a Personal Website and a Landing Page.</p></div></li>
     <li><span class="tl-dot">&#10047;</span><div class="tl-card"><small>Now</small><h3>3rd year BSIT, section 31B</h3><p>Building this portfolio and other stuff.</p></div></li>
@@ -770,51 +770,56 @@ body.loading{overflow:hidden}
   <span class="eyebrow">Worlds I got lost in</span>
   <h2>MY FAVORITE GAMES</h2>
   <p class="panel-sub">Click a card to peek inside the story.</p>
-  <div class="filters" role="group" aria-label="Filter games"><button class="fchip on" data-f="all">All</button><button class="fchip" data-f="jrpg">JRPG</button><button class="fchip" data-f="rpg">RPG</button><button class="fchip" data-f="story">Story-driven</button></div>
+  <div class="filters" role="group" aria-label="Filter games">
+    <button class="fchip on" data-f="all">All</button>
+    <button class="fchip" data-f="jrpg">JRPG</button>
+    <button class="fchip" data-f="rpg">RPG</button>
+    <button class="fchip" data-f="story">Story-driven</button>
+  </div>
   <div class="games-grid">
-    <div class="item game-card" data-title="Elden Ring" data-genre="Action RPG / Souls Like" data-synopsis="In the Lands Between ruled by Queen Marika the Eternal, the Elden Ring has been shattered. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord." data-details="Developer: FromSoftware | Released: 2022 | Platform: PC, PS, Xbox" data-img="elden-ring-button-03-1623460560664.jpg">
+    <div class="item game-card" data-category="rpg" data-title="Elden Ring" data-genre="Action RPG / Souls Like" data-synopsis="In the Lands Between ruled by Queen Marika the Eternal, the Elden Ring has been shattered. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord." data-details="Developer: FromSoftware | Released: 2022 | Platform: PC, PS, Xbox" data-img="elden-ring-button-03-1623460560664.jpg">
       <div class="game-thumb"><img src="elden-ring-button-03-1623460560664.jpg" alt="Elden Ring"></div>
       <h3>Elden Ring</h3>
       <p>Action RPG / Souls Like</p>
     </div>
 
-    <div class="item game-card" data-title="Until Then" data-genre="Narrative Adventure" data-synopsis="A story about love, loss, and the choices that define us." data-details="Developer: Polychroma Games | Released: 2024 | Platform: PC, PS5" data-img="untilthen.jpeg">
+    <div class="item game-card" data-category="story" data-title="Until Then" data-genre="Narrative Adventure" data-synopsis="A story about love, loss, and the choices that define us." data-details="Developer: Polychroma Games | Released: 2024 | Platform: PC, PS5" data-img="untilthen.jpeg">
       <div class="game-thumb"><img src="untilthen.jpeg" alt="Until Then"></div>
       <h3>Until Then</h3>
       <p>Narrative Adventure</p>
     </div>
 
-    <div class="item game-card" data-title="Persona 4 Golden" data-genre="JRPG" data-synopsis="A coming-of-age story set in the rural town of Inaba, where a series of mysterious murders coincides with a rumor about the Midnight Channel. Together with the Investigation Team, you must unravel the truth while balancing high school life." data-details="Developer: Atlus | Released: 2012 | Platform: PC, PS Vita, PS4, Xbox, Switch" data-img="p4g.jpeg">
+    <div class="item game-card" data-category="jrpg rpg story" data-title="Persona 4 Golden" data-genre="JRPG" data-synopsis="A coming-of-age story set in the rural town of Inaba, where a series of mysterious murders coincides with a rumor about the Midnight Channel. Together with the Investigation Team, you must unravel the truth while balancing high school life." data-details="Developer: Atlus | Released: 2012 | Platform: PC, PS Vita, PS4, Xbox, Switch" data-img="p4g.jpeg">
       <div class="game-thumb"><img src="p4g.jpeg" alt="Persona 4 Golden"></div>
       <h3>Persona 4 Golden</h3>
       <p>JRPG</p>
     </div>
 
-    <div class="item game-card" data-title="Heavy Rain" data-genre="Interactive Drama / Thriller" data-synopsis="A gripping interactive thriller where four playable characters hunt for the Origami Killer, a serial murderer who leaves folded paper shapes at his crime scenes. How far will you go to save someone you love?" data-details="Developer: Quantic Dream | Released: 2010 | Platform: PC, PS3, PS4" data-img="heavyrain.jpeg">
+    <div class="item game-card" data-category="story" data-title="Heavy Rain" data-genre="Interactive Drama / Thriller" data-synopsis="A gripping interactive thriller where four playable characters hunt for the Origami Killer, a serial murderer who leaves folded paper shapes at his crime scenes. How far will you go to save someone you love?" data-details="Developer: Quantic Dream | Released: 2010 | Platform: PC, PS3, PS4" data-img="heavyrain.jpeg">
       <div class="game-thumb"><img src="heavyrain.jpeg" alt="Heavy Rain"></div>
       <h3>Heavy Rain</h3>
       <p>Interactive Drama / Thriller</p>
     </div>
 
-    <div class="item game-card" data-title="Final Fantasy VIII" data-genre="JRPG" data-synopsis="Squall Leonhart, a mercenary student in the elite SeeD unit, is pulled into a war against the sorceress Edea. As dark secrets unfold, he and his squad must fight across time to save their world." data-details="Developer: Square | Released: 1999 | Platform: PC, PS, PS4, Xbox One, Switch" data-img="finalfantasyviii_5.jpeg">
+    <div class="item game-card" data-category="jrpg rpg story" data-title="Final Fantasy VIII" data-genre="JRPG" data-synopsis="Squall Leonhart, a mercenary student in the elite SeeD unit, is pulled into a war against the sorceress Edea. As dark secrets unfold, he and his squad must fight across time to save their world." data-details="Developer: Square | Released: 1999 | Platform: PC, PS, PS4, Xbox One, Switch" data-img="finalfantasyviii_5.jpeg">
       <div class="game-thumb"><img src="finalfantasyviii_5.jpeg" alt="Final Fantasy VIII"></div>
       <h3>Final Fantasy VIII</h3>
       <p>JRPG</p>
     </div>
 
-    <div class="item game-card" data-title="Final Fantasy IX" data-genre="JRPG" data-synopsis="Zidane Tribal and the Tantalus Theater Troupe kidnap Princess Garnet of Alexandria. Together with a colorful group of companions, they uncover a conspiracy that threatens the entire world of Gaia." data-details="Developer: Square | Released: 2000 | Platform: PC, PS, PS4, Xbox One, Switch, Mobile" data-img="ff9.jpg">
+    <div class="item game-card" data-category="jrpg rpg story" data-title="Final Fantasy IX" data-genre="JRPG" data-synopsis="Zidane Tribal and the Tantalus Theater Troupe kidnap Princess Garnet of Alexandria. Together with a colorful group of companions, they uncover a conspiracy that threatens the entire world of Gaia." data-details="Developer: Square | Released: 2000 | Platform: PC, PS, PS4, Xbox One, Switch, Mobile" data-img="ff9.jpg">
       <div class="game-thumb"><img src="ff9.jpg" alt="Final Fantasy IX"></div>
       <h3>Final Fantasy IX</h3>
       <p>JRPG</p>
     </div>
 
-    <div class="item game-card" data-title="Disco Elysium" data-genre="RPG / Detective" data-synopsis="You're a washed-up detective with a unique skill system at your disposal and a whole city block to carve your path across. Interrogate unforgettable characters, crack murders, or take bribes in this ground-breaking role-playing experience." data-details="Developer: ZA/UM | Released: 2019 | Platform: PC, PS4, PS5, Xbox, Switch" data-img="discoelysium.jpeg">
+    <div class="item game-card" data-category="rpg story" data-title="Disco Elysium" data-genre="RPG / Detective" data-synopsis="You're a washed-up detective with a unique skill system at your disposal and a whole city block to carve your path across. Interrogate unforgettable characters, crack murders, or take bribes in this ground-breaking role-playing experience." data-details="Developer: ZA/UM | Released: 2019 | Platform: PC, PS4, PS5, Xbox, Switch" data-img="discoelysium.jpeg">
       <div class="game-thumb"><img src="discoelysium.jpeg" alt="Disco Elysium"></div>
       <h3>Disco Elysium</h3>
       <p>RPG / Detective</p>
     </div>
 
-    <div class="item game-card" data-title="Detroit: Become Human" data-genre="Interactive Drama / Sci-Fi" data-synopsis="Set in Detroit during the year 2038, the city has been revitalized by the invention and introduction of androids into everyday life. But when androids start behaving as if they are alive, events begin to spin out of control." data-details="Developer: Quantic Dream | Released: 2018 | Platform: PC, PS4" data-img="detroit.jpeg">
+    <div class="item game-card" data-category="story" data-title="Detroit: Become Human" data-genre="Interactive Drama / Sci-Fi" data-synopsis="Set in Detroit during the year 2038, the city has been revitalized by the invention and introduction of androids into everyday life. But when androids start behaving as if they are alive, events begin to spin out of control." data-details="Developer: Quantic Dream | Released: 2018 | Platform: PC, PS4" data-img="detroit.jpeg">
       <div class="game-thumb"><img src="detroit.jpeg" alt="Detroit: Become Human"></div>
       <h3>Detroit: Become Human</h3>
       <p>Interactive Drama / Sci-Fi</p>
@@ -840,7 +845,7 @@ body.loading{overflow:hidden}
 
 <section id="projects"><div class="wrap"><div class="panel">
   <span class="eyebrow">Small Projects</span>
-  <h2>THINGS I'VE MADE</h2>
+  instruction set <h2>THINGS I'VE MADE</h2>
   <p class="proj-sub">Website Development Laboratory Activities.</p>
   <div class="proj-grid">
 
@@ -916,6 +921,13 @@ body.loading{overflow:hidden}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
 (function(){
+  // Loader hide
+  window.addEventListener('load', function() {
+    document.body.classList.remove('loading');
+    var ldr = document.getElementById('loader');
+    if (ldr) ldr.classList.add('done');
+  });
+
   var yr = document.getElementById('year');
   if (yr) yr.textContent = new Date().getFullYear();
 
@@ -926,8 +938,31 @@ body.loading{overflow:hidden}
   };
 
   var links=[].slice.call(document.querySelectorAll('.nav a')),secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))});
-  new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)links.forEach(function(l,i){l.classList.toggle('on',secs[i]===e.target)})})},{threshold:.5}).observe&&secs.forEach(function(s){
-    new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)links.forEach(function(l,i){l.classList.toggle('on',secs[i]===e.target)})})},{threshold:.5}).observe(s)});
+  if(window.IntersectionObserver){
+    secs.forEach(function(s){
+      new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)links.forEach(function(l,i){l.classList.toggle('on',secs[i]===e.target)})})},{threshold:.5}).observe(s);
+    });
+  }
+
+  /* ---- Interactive Journey Activation Script ---- */
+  var tlItems = [].slice.call(document.querySelectorAll('.tl li'));
+  var tlContainer = document.querySelector('.tl');
+  if (window.IntersectionObserver && tlItems.length) {
+    var tlObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('on');
+        }
+      });
+      var activeCount = tlItems.filter(function(item) { return item.classList.contains('on'); }).length;
+      if (tlContainer) {
+        var progressRatio = (activeCount - 1) / Math.max(tlItems.length - 1, 1);
+        tlContainer.style.setProperty('--grow', Math.max(0, progressRatio));
+      }
+    }, { threshold: 0.4 });
+
+    tlItems.forEach(function(item) { tlObserver.observe(item); });
+  }
 
   var floats=[].slice.call(document.querySelectorAll('.float')),mx=0,my=0;
   addEventListener('mousemove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;
@@ -1002,7 +1037,7 @@ body.loading{overflow:hidden}
   }
   tree.add(bl);
 
-  // ---- Side branches: drawn on their own layer in front of the panels, so they can reach toward the middle ----
+  // ---- Side branches layer ----
   var renderer2=new THREE.WebGLRenderer({canvas:document.getElementById('gl2'),antialias:true,alpha:true});
   renderer2.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?1.5:2));
   var scene2=new THREE.Scene(),cam2=new THREE.PerspectiveCamera(50,1,.1,100);cam2.position.z=7;
@@ -1010,19 +1045,23 @@ body.loading{overflow:hidden}
   var sun2=new THREE.DirectionalLight(0xfffae8,1.6);sun2.position.set(-5,8,3);scene2.add(sun2);
   function V3(p){return new THREE.Vector3(p[0],p[1],p[2])}
   var flowMats=[];
-  function makeBranch(){
+
+  function makeBranch(isLeft){
     var g=new THREE.Group();
-    var r1=new THREE.CatmullRomCurve3([[11,-1.7,1],[8.4,-1.2,1.4],[5.6,-.3,1.2],[3,.8,.8],[1.1,1.4,.4]].map(V3));
-    var r2=new THREE.CatmullRomCurve3([[7.4,-.9,1.3],[6.6,.7,1],[5.6,2.0,.3]].map(V3));
-    var r3=new THREE.CatmullRomCurve3([[8.4,-1.4,1.3],[7.1,-2.3,1],[6.4,-3.2,.5]].map(V3));
-    var r4=new THREE.CatmullRomCurve3([[4.4,.1,1],[3.4,-.9,.8],[2.2,-1.4,.5]].map(V3));
-    g.add(new THREE.Mesh(tube(r1,80,.2,.04,12,11),bark));
-    g.add(new THREE.Mesh(tube(r2,40,.1,.04,10,13),bark));
-    g.add(new THREE.Mesh(tube(r3,40,.11,.04,10,17),bark));
-    g.add(new THREE.Mesh(tube(r4,30,.07,.025,8,19),bark));
+    var sx = isLeft ? -1 : 1;
+    var r1=new THREE.CatmullRomCurve3([[11*sx,-1.7,1],[8.4*sx,-1.2,1.4],[5.6*sx,-.3,1.2],[3*sx,.8,.8],[1.1*sx,1.4,.4]].map(V3));
+    var r2=new THREE.CatmullRomCurve3([[7.4*sx,-.9,1.3],[6.6*sx,.7,1],[5.6*sx,2.0,.3]].map(V3));
+    var r3=new THREE.CatmullRomCurve3([[8.4*sx,-1.4,1.3],[7.1*sx,-2.3,1],[6.4*sx,-3.2,.5]].map(V3));
+    var r4=new THREE.CatmullRomCurve3([[4.4*sx,.1,1],[3.4*sx,-.9,.8],[2.2*sx,-1.4,.5]].map(V3));
+    g.add(new THREE.Mesh(tube(r1,80,.2,.04,12,isLeft?31:11),bark));
+    g.add(new THREE.Mesh(tube(r2,40,.1,.04,10,isLeft?33:13),bark));
+    g.add(new THREE.Mesh(tube(r3,40,.11,.04,10,isLeft?37:17),bark));
+    g.add(new THREE.Mesh(tube(r4,30,.07,.025,8,isLeft?39:19),bark));
     var cv=[r1,r1,r1,r2,r3,r4],tw=[];
     for(var i=0;i<26;i++){
-      var b2=cv[i%6].getPoint(Math.random()),e2=b2.clone().add(new THREE.Vector3((Math.random()-.7)*1.6,(Math.random()-.4)*1.8,(Math.random()-.5)*1.0)),
+      var b2=cv[i%6].getPoint(Math.random()),
+          dx = isLeft ? (Math.random()-.3)*1.6 : (Math.random()-.7)*1.6,
+          e2=b2.clone().add(new THREE.Vector3(dx,(Math.random()-.4)*1.8,(Math.random()-.5)*1.0)),
           m2=b2.clone().lerp(e2,.5).add(new THREE.Vector3((Math.random()-.5)*.3,0,(Math.random()-.5)*.3)),tc2=new THREE.CatmullRomCurve3([b2,m2,e2]);
       tw.push(tc2);g.add(new THREE.Mesh(tube(tc2,12,.036,.012,6,i+40),bark));
       var kn2=new THREE.Mesh(new THREE.SphereGeometry(.05,8,6),bark);kn2.position.copy(b2);kn2.scale.set(1,.8,1);g.add(kn2)}
@@ -1034,8 +1073,9 @@ body.loading{overflow:hidden}
       fl.setMatrixAt(i,d.matrix);fl.setColorAt(i,pal[i%4]);
     }
     flowMats.push(fl.material);g.add(fl);return g}
-  var tree2=makeBranch(),tree3=makeBranch();   // tree2: Favorite Games, tree3: Things I've made
-  scene2.add(tree2);scene2.add(tree3);
+
+  var treeJourney = makeBranch(true), tree2 = makeBranch(false), tree3 = makeBranch(false);
+  scene2.add(treeJourney); scene2.add(tree2); scene2.add(tree3);
 
   var M=(innerWidth<700?90:180),pet=new THREE.InstancedMesh(makePetal(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),M),S=[];
   for(var k=0;k<M;k++) {
@@ -1056,8 +1096,6 @@ body.loading{overflow:hidden}
 
   function size(){renderer.setSize(innerWidth,innerHeight,false);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix();renderer2.setSize(innerWidth,innerHeight,false);cam2.aspect=innerWidth/innerHeight;cam2.updateProjectionMatrix()}
   addEventListener('resize',size);size();
-
-  function ease(x){return x*x*(3-2*x)}
 
   var sw=new THREE.Group();sw.visible=true;scene.add(sw);
 
@@ -1297,13 +1335,14 @@ body.loading{overflow:hidden}
 
   var themeTick=0,lastLight=null,sceneNow=0,ray=new THREE.Raycaster();
   function isLight(){var a=document.documentElement.getAttribute('data-theme');return a?a==='light':!matchMedia('(prefers-color-scheme: dark)').matches}
-  // click the sword: a burst of petals
+  
   addEventListener('click',function(e){
     if(reduce||sceneNow<.6)return;
     ray.setFromCamera(new THREE.Vector2(e.clientX/innerWidth*2-1,-(e.clientY/innerHeight)*2+1),cam);
     if(!ray.intersectObject(sw,true).length)return;
     for(var n=0;n<80;n++){var st=S[(Math.random()*M)|0];st.x=(Math.random()-.5)*.8;st.y=sw.position.y+1.6+Math.random()*1.2;st.z=(Math.random()-.5)*.8;st.vx=(Math.random()-.5)*.14;st.vy=.06+Math.random()*.08}
   });
+
   function draw(){
     if(!reduce) t += .01;
 
@@ -1364,210 +1403,28 @@ body.loading{overflow:hidden}
     document.body.classList.toggle('night', sceneOpacity > .35);
 
     tree.position.y = scrollY * .004;
-    // side branches glide past "Favorite Games" and "Things I've made"
-    var favEl = document.getElementById('activities'), prjEl = document.getElementById('projects');
+
+    var jrnEl = document.getElementById('journey');
+    var favEl = document.getElementById('activities');
+    var prjEl = document.getElementById('projects');
+
+    var jrnScroll = (jrnEl ? jrnEl.offsetTop : innerHeight * 2) + innerHeight * .3;
     var favScroll = (favEl ? favEl.offsetTop : innerHeight * 3) + innerHeight * .35;
     var prjScroll = (prjEl ? prjEl.offsetTop : innerHeight * 4) + innerHeight * .3;
-    tree2.position.y = 0.3 + (scrollY - favScroll) * .004;   // change 0.3 to move it up/down
+
+    treeJourney.position.y = 0.3 + (scrollY - jrnScroll) * .004;
+    tree2.position.y = 0.3 + (scrollY - favScroll) * .004;
     tree3.position.y = 0.3 + (scrollY - prjScroll) * .004;
+
+    treeJourney.rotation.y = mx * .08;
     tree2.rotation.y = mx * .08;
     tree3.rotation.y = mx * .08;
-    renderer2.domElement.style.opacity = 1 - Math.min(sceneOpacity * 4, 1);   // fade out before the sword scene
-    tree.rotation.y = mx * .15;
-    cam.position.x += (mx * .6 - cam.position.x) * .05;
-    cam.position.y += (-my * .4 - cam.position.y) * .05;
-    cam.lookAt(0, 0, 0);
 
     renderer.render(scene, cam);
-    cam2.position.copy(cam.position);cam2.lookAt(0, 0, 0);
-    if(innerWidth>=700)renderer2.render(scene2, cam2);
+    renderer2.render(scene2, cam2);
     requestAnimationFrame(draw);
   }
-
-  // Profile Picture Modal & Gallery Script
-  var profileBtn = document.getElementById('openProfileModal'),
-      profileModal = document.getElementById('profileModal'),
-      profileClose = document.getElementById('profileModalClose'),
-      profileModalImg = document.getElementById('profileModalImg'),
-      profilePrev = document.getElementById('profilePrev'),
-      profileNext = document.getElementById('profileNext'),
-      profileCounter = document.getElementById('profileCounter');
-
-  // Add all your profile pictures to this array!
-  var profileImages = [
-    "romejay5.jpeg",
-    "romejay6.jpeg",
-    "romejay7.jpeg",
-    "romejay8.jpeg"
-  ];
-  
-  var currentProfileIdx = 0;
-
-  function updateProfileImage() {
-    if (!profileImages || profileImages.length === 0) return;
-    profileModalImg.src = profileImages[currentProfileIdx];
-    if (profileCounter) {
-      profileCounter.textContent = (currentProfileIdx + 1) + " / " + profileImages.length;
-    }
-  }
-
-  function showNextProfile() {
-    currentProfileIdx = (currentProfileIdx + 1) % profileImages.length;
-    updateProfileImage();
-  }
-
-  function showPrevProfile() {
-    currentProfileIdx = (currentProfileIdx - 1 + profileImages.length) % profileImages.length;
-    updateProfileImage();
-  }
-
-  if (profileBtn && profileModal) {
-    function openProfileModal() {
-      currentProfileIdx = 0;
-      updateProfileImage();
-      profileModal.classList.add('open');
-      profileModal.setAttribute('aria-hidden', 'false');
-    }
-    function closeProfileModal() {
-      profileModal.classList.remove('open');
-      profileModal.setAttribute('aria-hidden', 'true');
-    }
-    profileBtn.addEventListener('click', openProfileModal);
-    profileBtn.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openProfileModal();
-      }
-    });
-    profileClose.onclick = closeProfileModal;
-    
-    if (profilePrev) profilePrev.onclick = function(e) { e.stopPropagation(); showPrevProfile(); };
-    if (profileNext) profileNext.onclick = function(e) { e.stopPropagation(); showNextProfile(); };
-
-    profileModal.onclick = function(e) {
-      if (e.target === profileModal || e.target.classList.contains('image-modal-content')) closeProfileModal();
-    };
-
-    // Keyboard Arrow Controls
-    addEventListener('keydown', function(e) {
-      if (!profileModal.classList.contains('open')) return;
-      if (e.key === 'ArrowRight') showNextProfile();
-      else if (e.key === 'ArrowLeft') showPrevProfile();
-      else if (e.key === 'Escape') closeProfileModal();
-    });
-
-    // Touch Swipe Support for Mobile
-    var touchStartX = 0;
-    profileModal.addEventListener('touchstart', function(e) {
-      touchStartX = e.changedTouches[0].screenX;
-    }, false);
-    profileModal.addEventListener('touchend', function(e) {
-      var touchEndX = e.changedTouches[0].screenX;
-      if (touchEndX < touchStartX - 40) showNextProfile();
-      if (touchEndX > touchStartX + 40) showPrevProfile();
-    }, false);
-  }
-
-  var collageBtn = document.getElementById('openCollageModal'),
-      collageModal = document.getElementById('collageModal'),
-      collageClose = document.getElementById('collageModalClose');
-
-  if (collageBtn && collageModal) {
-    function openCollageModal() {
-      collageModal.classList.add('open');
-      collageModal.setAttribute('aria-hidden', 'false');
-    }
-    function closeCollageModal() {
-      collageModal.classList.remove('open');
-      collageModal.setAttribute('aria-hidden', 'true');
-    }
-    collageBtn.addEventListener('click', openCollageModal);
-    collageBtn.addEventListener('keydown', function(e) {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        openCollageModal();
-      }
-    });
-    collageClose.onclick = closeCollageModal;
-    collageModal.onclick = function(e) {
-      if (e.target === collageModal) closeCollageModal();
-    };
-    addEventListener('keydown', function(e) {
-      if (e.key === 'Escape' && collageModal.classList.contains('open')) {
-        closeCollageModal();
-      }
-    });
-  }
-
-  var modal = document.getElementById('gameModal'),
-      modalImg = document.getElementById('modalImg'),
-      modalTitle = document.getElementById('modalTitle'),
-      modalGenre = document.getElementById('modalGenre'),
-      modalSynopsis = document.getElementById('modalSynopsis'),
-      modalDetails = document.getElementById('modalDetails'),
-      modalClose = document.getElementById('modalClose');
-
-  document.querySelectorAll('.game-card').forEach(function(card){
-    card.addEventListener('click', function(){
-      modalImg.src = card.dataset.img;
-      modalTitle.textContent = card.dataset.title;
-      modalGenre.textContent = card.dataset.genre;
-      modalSynopsis.textContent = card.dataset.synopsis;
-      modalDetails.textContent = card.dataset.details;
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-    });
-  });
-
-  function closeModal(){
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-  }
-
-  modalClose.onclick = closeModal;
-  modal.onclick = function(e){ if(e.target === modal) closeModal(); };
-  addEventListener('keydown', function(e){ if(e.key === 'Escape' && modal.classList.contains('open')) closeModal(); });
-
   draw();
-})();
-</script>
-<script>
-(function(){
-  // loading screen
-  var t0=performance.now(),ld=document.getElementById('loader');
-  function hide(){if(!ld||ld.classList.contains('done'))return;ld.classList.add('done');document.body.classList.remove('loading');setTimeout(function(){ld.remove()},800)}
-  document.body.classList.add('loading');
-  addEventListener('load',function(){setTimeout(hide,Math.max(0,1500-(performance.now()-t0)))});
-  setTimeout(hide,4500);
-
-  // scroll progress, nav follow, growing branch
-  var bar=document.getElementById('progress'),nav=document.querySelector('.nav'),tl=document.querySelector('.tl'),
-      items=tl?[].slice.call(tl.children):[],lastOn=null;
-  function onScroll(){
-    var max=document.documentElement.scrollHeight-innerHeight;
-    bar.style.transform='scaleX('+(max>0?Math.min(scrollY/max,1):0)+')';
-    var on=nav.querySelector('a.on');
-    if(on&&on!==lastOn&&nav.scrollWidth>nav.clientWidth)nav.scrollLeft=on.offsetLeft-nav.clientWidth/2+on.offsetWidth/2;
-    lastOn=on;
-    if(tl){var r=tl.getBoundingClientRect(),line=innerHeight*.62,p=Math.min(Math.max((line-r.top)/r.height,0),1);
-      tl.style.setProperty('--grow',p);
-      items.forEach(function(li){li.classList.toggle('on',r.top+li.offsetTop+18<line)})}
-  }
-  addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);onScroll();
-
-  // games: staggered reveal + filters
-  var grid=document.querySelector('.games-grid'),cards=grid?[].slice.call(grid.querySelectorAll('.game-card')):[];
-  function play(){var i=0;cards.forEach(function(c){if(c.classList.contains('is-hidden'))return;c.classList.remove('pre','reveal-in');void c.offsetWidth;c.style.setProperty('--i',i++);c.classList.add('reveal-in')})}
-  cards.forEach(function(c){c.classList.add('pre')});
-  if(grid)new IntersectionObserver(function(es,o){if(es[0].isIntersecting){play();o.disconnect()}},{threshold:.1}).observe(grid);
-  var chips=[].slice.call(document.querySelectorAll('.fchip'));
-  chips.forEach(function(b){b.addEventListener('click',function(){
-    chips.forEach(function(x){x.classList.toggle('on',x===b)});
-    var f=b.dataset.f;
-    cards.forEach(function(c){var g=(c.dataset.genre||'').toLowerCase();
-      var ok=f==='all'||(f==='jrpg'&&g.indexOf('jrpg')>-1)||(f==='rpg'&&g.indexOf('rpg')>-1)||(f==='story'&&/narrative|drama/.test(g));
-      c.classList.toggle('is-hidden',!ok)});
-    play()})});
 })();
 </script>
 </body>
