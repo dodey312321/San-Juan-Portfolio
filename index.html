@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>San Juan / Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;500;700&family=Shippori+Mincho:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#f6e6ea;--ink:#3b2a35;--mute:#7a5f6c;--card:#fffafa;--cink:#3b2a35;--glass:rgba(255,255,255,.55);--line:rgba(59,42,53,.2);--acc:#d9466f;--halo:rgba(255,246,248,.9);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
@@ -142,6 +142,14 @@ body.night{--halo:rgba(24,15,30,.92);--ink:#fbeef0;--mute:#d8c5cd;--glass:rgba(2
 #end{min-height:80vh;align-items:flex-start;padding-top:10vh}
 h1,.sub{text-shadow:0 0 12px var(--halo),0 0 28px var(--halo),0 2px 3px var(--halo)}
 h1{font-weight:400}.sub{color:var(--ink)}
+/* name font: elegant Japanese-style serif that fits the blossom theme (to try another, just change the font name below) */
+/* hero: smaller name, pink BSIT-31B subtitle, address on a soft pill */
+h1{font-size:clamp(2.5rem,7.2vw,5.85rem)}
+.hero-tag{margin:1.1rem 0 0}
+.hero-tag span{display:inline-flex;align-items:center;gap:.7rem;padding:.55rem 1.4rem;border-radius:99px;background:#ffb3c6;border:1px solid rgba(255,255,255,.65);color:#3b2236;font-weight:700;font-size:clamp(.9rem,1.5vw,1.1rem);letter-spacing:.3em;text-transform:uppercase;text-shadow:none;box-shadow:0 8px 22px rgba(0,0,0,.3)}
+.hero-tag span::before{content:"\273F";letter-spacing:0;color:#c2385e}
+.sub{display:inline-flex;align-items:center;gap:.4rem;margin-top:1.3rem;padding:.55rem 1.2rem;font-size:1rem;border-radius:99px;background:var(--halo);border:1px solid var(--line);backdrop-filter:blur(6px);text-shadow:none}
+h1{font-family:"Shippori Mincho","Cormorant Garamond",Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:.02em;line-height:1.05}
 @media (max-width:800px){
   .hero{grid-template-columns:1fr}
   .stage{min-height:420px}
@@ -624,7 +632,7 @@ h1{font-weight:400}.sub{color:var(--ink)}
 body.loading{overflow:hidden}
 #loader{position:fixed;inset:0;z-index:300;display:grid;place-content:center;justify-items:center;gap:1.6rem;background:#2b2030;color:#fbeef0;transition:opacity .7s ease,visibility .7s}
 #loader.done{opacity:0;visibility:hidden}
-#loader p{margin:0;font-weight:300;letter-spacing:.3em;text-transform:uppercase;font-size:.85rem;opacity:0;animation:ldfade .8s .6s forwards}
+#loader p{margin:0;font-family:"Shippori Mincho",Georgia,serif;font-weight:500;letter-spacing:.3em;text-transform:uppercase;font-size:.85rem;opacity:0;animation:ldfade .8s .6s forwards}
 .bloom{position:relative;width:90px;height:90px}
 .bloom i{position:absolute;left:50%;top:50%;width:34px;height:48px;margin:-48px 0 0 -17px;border-radius:60% 60% 50% 50%/70% 70% 40% 40%;background:linear-gradient(180deg,#ffe0e8,#f29ab4);transform-origin:50% 100%;transform:rotate(calc(var(--k)*72deg)) scale(0);animation:bloom 1s cubic-bezier(.3,1.5,.5,1) forwards;animation-delay:calc(var(--k)*.11s)}
 .bloom i:nth-child(1){--k:0}.bloom i:nth-child(2){--k:1}.bloom i:nth-child(3){--k:2}.bloom i:nth-child(4){--k:3}.bloom i:nth-child(5){--k:4}
@@ -648,6 +656,29 @@ body.loading{overflow:hidden}
 .tl li.on .tl-card{opacity:1;transform:none}
 .tl-card small{font-size:.75rem;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:#c2385e}
 .tl-card h3{margin:.15rem 0 .2rem;font-size:1.2rem;font-weight:500}.tl-card p{margin:0;font-size:.95rem}
+/* Journey upgrade: bark branch, glowing bud that rides the branch, blooming cards */
+.tl::before{z-index:0;background:rgba(107,74,58,.14)}
+.tl::after{z-index:1;background:repeating-linear-gradient(180deg,rgba(255,255,255,.16) 0 2px,transparent 2px 9px),linear-gradient(180deg,#9a7a66,#5a3f32);box-shadow:0 0 14px rgba(217,70,111,.25)}
+.tl-dot{z-index:3;background:radial-gradient(circle at 50% 35%,#fff,#fff0f4)}
+.tl-head{position:absolute;left:8px;top:calc(8px + (100% - 16px)*var(--grow));margin-top:-10px;width:19px;height:19px;display:grid;place-items:center;font-size:.75rem;line-height:1;color:#fff;background:radial-gradient(circle,#ff8fb0,#d9466f);border-radius:50%;z-index:2;animation:tlglow 2s ease-in-out infinite}
+@keyframes tlglow{0%,100%{box-shadow:0 0 0 3px rgba(242,154,180,.3),0 0 12px rgba(217,70,111,.45)}50%{box-shadow:0 0 0 7px rgba(242,154,180,.16),0 0 22px rgba(217,70,111,.7)}}
+.tl li.cur .tl-dot{transform:scale(1.15) rotate(72deg);box-shadow:0 0 0 6px rgba(242,154,180,.35),0 0 24px rgba(217,70,111,.45);animation:tlring 2.2s ease-in-out infinite}
+@keyframes tlring{0%,100%{box-shadow:0 0 0 6px rgba(242,154,180,.35),0 0 20px rgba(217,70,111,.4)}50%{box-shadow:0 0 0 11px rgba(242,154,180,.12),0 0 28px rgba(217,70,111,.6)}}
+.tl-card{position:relative;overflow:hidden;transition:opacity .5s,transform .5s,box-shadow .4s,background .4s}
+.tl-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,#f29ab4,#d9466f);transform:scaleY(0);transform-origin:top;transition:transform .6s .15s}
+.tl li.on .tl-card::before{transform:scaleY(1)}
+.tl-card>*{opacity:0;transform:translateY(8px);transition:opacity .5s,transform .5s}
+.tl li.on .tl-card>*{opacity:1;transform:none}
+.tl li.on .tl-card>:nth-child(2){transition-delay:.1s}
+.tl li.on .tl-card>:nth-child(3){transition-delay:.2s}
+.tl li.on .tl-card:hover{transform:translateX(6px);box-shadow:0 12px 26px rgba(194,56,94,.16)}
+.tl li.cur .tl-card{background:linear-gradient(135deg,#fbe3ea,#f7e8ec);box-shadow:0 14px 30px rgba(194,56,94,.18)}
+.tl li:last-child small::before{content:"";display:inline-block;width:8px;height:8px;margin-right:.45rem;border-radius:50%;background:#d9466f;animation:tlpulse 1.6s ease-in-out infinite}
+@keyframes tlpulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.6)}}
+.tl-petal{position:absolute;top:6px;width:12px;height:12px;border-radius:60% 0 60% 0;background:linear-gradient(135deg,#ffe0e8,#f29ab4);pointer-events:none;opacity:0;z-index:4;animation:tlfall 1.9s ease-out forwards}
+@keyframes tlfall{0%{opacity:0;transform:translate(0,0) rotate(var(--r)) scale(.4)}15%{opacity:1}100%{opacity:0;transform:translate(var(--dx),160px) rotate(calc(var(--r) + 220deg)) scale(1)}}
+@media (prefers-reduced-motion:reduce){.tl-head,.tl li.cur .tl-dot,.tl li:last-child small::before{animation:none}.tl-petal{display:none}}
+
 
 /* ---- Skills ---- */
 .skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem;margin-top:1.4rem}
@@ -688,7 +719,8 @@ body.loading{overflow:hidden}
 
 <section id="profile"><div class="wrap hero">
   <div>
-    <h1>SAN JUAN ROMEJAY<br>BSIT-31B.</h1>
+    <h1>SAN JUAN<br>ROMEJAY</h1>
+    <p class="hero-tag"><span>BSIT-31B</span></p>
     <p class="sub">➤ 357 Mendoza St. Lolomboy, Bocaue, Bulacan.</p>
   </div>
   <div class="stage" id="stage">
@@ -770,7 +802,7 @@ body.loading{overflow:hidden}
   <span class="eyebrow">Worlds I got lost in</span>
   <h2>MY FAVORITE GAMES</h2>
   <p class="panel-sub">Click a card to peek inside the story.</p>
-  <div class="filters" role="group" aria-label="Filter games"><button class="fchip on" data-f="all">All</button><button class="fchip" data-f="jrpg">JRPG</button><button class="fchip" data-f="rpg">RPG</button><button class="fchip" data-f="story">Story-driven</button></div>
+  <div class="filters" role="group" aria-label="Filter games"><button class="fchip on" data-f="all">All</button><button class="fchip" data-f="jrpg">JRPG</button><button class="fchip" data-f="rpg">RPG</button></div>
   <div class="games-grid">
     <div class="item game-card" data-title="Elden Ring" data-genre="Action RPG / Souls Like" data-synopsis="In the Lands Between ruled by Queen Marika the Eternal, the Elden Ring has been shattered. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord." data-details="Developer: FromSoftware | Released: 2022 | Platform: PC, PS, Xbox" data-img="elden-ring-button-03-1623460560664.jpg">
       <div class="game-thumb"><img src="elden-ring-button-03-1623460560664.jpg" alt="Elden Ring"></div>
@@ -989,12 +1021,12 @@ body.loading{overflow:hidden}
     o.setAttribute('color',new THREE.Float32BufferAttribute(col,3));o.setIndex(idx);o.computeVertexNormals();return o}
 
   var curves=[c1,c1,c2,c3,c4],twigs=[];
-  for(var i=0;i<32;i++){
+  for(var i=0;i<48;i++){
     var base=curves[i%5].getPoint(Math.random()),e=base.clone().add(new THREE.Vector3((Math.random()-.5)*1.8,.4+Math.random()*1.3,(Math.random()-.5)*1.2)),
         m=base.clone().lerp(e,.5).add(new THREE.Vector3((Math.random()-.5)*.3,0,(Math.random()-.5)*.3)),tc=new THREE.CatmullRomCurve3([base,m,e]);
     twigs.push(tc);tree.add(new THREE.Mesh(tube(tc,12,.038,.012,6,i),bark));var kn=new THREE.Mesh(new THREE.SphereGeometry(.05,8,6),bark);kn.position.copy(base);kn.scale.set(1,.8,1);tree.add(kn)}
 
-  var N=(innerWidth<700?260:480),bl=new THREE.InstancedMesh(flowerGeo(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),N),d=new THREE.Object3D();
+  var N=(innerWidth<700?380:760),bl=new THREE.InstancedMesh(flowerGeo(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),N),d=new THREE.Object3D();
   var pal=['#ffffff','#fff5f7','#ffeaf0','#ffe0e9'].map(function(c){return new THREE.Color(c)});
   function pick(){return Math.random()<.75?twigs[(Math.random()*twigs.length)|0]:curves[(Math.random()*5)|0]}
   for(var i=0;i<N;i++){
@@ -1005,6 +1037,25 @@ body.loading{overflow:hidden}
   }
   tree.add(bl);
 
+  // soft pink leaves (same colors as the blossoms) to make the branches look fuller and alive; set LEAF_COUNT to 0 to remove them
+  var flowMats=[];
+  var LEAF_COUNT=(innerWidth<700?60:300);
+  function leafGeo(){
+    var sh=new THREE.Shape();sh.moveTo(0,0);sh.bezierCurveTo(.07,.04,.08,.16,0,.3);sh.bezierCurveTo(-.08,.16,-.07,.04,0,0);
+    var g=new THREE.ShapeGeometry(sh,8),p=g.attributes.position,col=new Float32Array(p.count*3),ca=new THREE.Color('#ea7f9f'),cb=new THREE.Color('#fff0f4'),c=new THREE.Color();
+    for(var i=0;i<p.count;i++){var x=p.getX(i),y=p.getY(i);p.setZ(i,x*x*2.5+y*y*.4);c.copy(ca).lerp(cb,Math.min(y/.3,1));col[i*3]=c.r;col[i*3+1]=c.g;col[i*3+2]=c.b}
+    g.setAttribute('color',new THREE.BufferAttribute(col,3));g.computeVertexNormals();return g}
+  function addLeaves(parent,sources,n){
+    if(!n)return;
+    var lm=new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide});flowMats.push(lm);var m=new THREE.InstancedMesh(leafGeo(),lm,n);
+    for(var i=0;i<n;i++){
+      var p=sources[(Math.random()*sources.length)|0].getPoint(.3+Math.random()*.7);
+      d.position.set(p.x+(Math.random()-.5)*.25,p.y+(Math.random()-.5)*.2,p.z+(Math.random()-.5)*.25);
+      d.scale.setScalar(.7+Math.random()*.7);d.rotation.set(Math.random()*6,Math.random()*6,Math.random()*6);d.updateMatrix();m.setMatrixAt(i,d.matrix);m.setColorAt(i,pal[i%4]);
+    }
+    parent.add(m)}
+  addLeaves(tree,twigs,LEAF_COUNT);
+
   // ---- Side branches layer ----
   var renderer2=new THREE.WebGLRenderer({canvas:document.getElementById('gl2'),antialias:true,alpha:true});
   renderer2.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?1.5:2));
@@ -1012,7 +1063,6 @@ body.loading{overflow:hidden}
   scene2.add(new THREE.AmbientLight(0xffffff,.85));
   var sun2=new THREE.DirectionalLight(0xfffae8,1.6);sun2.position.set(-5,8,3);scene2.add(sun2);
   function V3(p){return new THREE.Vector3(p[0],p[1],p[2])}
-  var flowMats=[];
 
   // supports both Left (isLeft = true) and Right (isLeft = false) side branches
   function makeBranch(isLeft){
@@ -1027,20 +1077,21 @@ body.loading{overflow:hidden}
     g.add(new THREE.Mesh(tube(r3,40,.11,.04,10,isLeft?37:17),bark));
     g.add(new THREE.Mesh(tube(r4,30,.07,.025,8,isLeft?39:19),bark));
     var cv=[r1,r1,r1,r2,r3,r4],tw=[];
-    for(var i=0;i<26;i++){
+    for(var i=0;i<40;i++){
       var b2=cv[i%6].getPoint(Math.random()),
           dx = isLeft ? (Math.random()-.3)*1.6 : (Math.random()-.7)*1.6,
           e2=b2.clone().add(new THREE.Vector3(dx,(Math.random()-.4)*1.8,(Math.random()-.5)*1.0)),
           m2=b2.clone().lerp(e2,.5).add(new THREE.Vector3((Math.random()-.5)*.3,0,(Math.random()-.5)*.3)),tc2=new THREE.CatmullRomCurve3([b2,m2,e2]);
       tw.push(tc2);g.add(new THREE.Mesh(tube(tc2,12,.036,.012,6,i+40),bark));
       var kn2=new THREE.Mesh(new THREE.SphereGeometry(.05,8,6),bark);kn2.position.copy(b2);kn2.scale.set(1,.8,1);g.add(kn2)}
-    var NB=(innerWidth<700?60:440),fl=new THREE.InstancedMesh(flowerGeo(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),NB);
+    var NB=(innerWidth<700?60:640),fl=new THREE.InstancedMesh(flowerGeo(),new THREE.MeshLambertMaterial({vertexColors:true,side:THREE.DoubleSide}),NB);
     for(var i=0;i<NB;i++){
       var p2=(Math.random()<.75?tw[(Math.random()*tw.length)|0]:cv[(Math.random()*6)|0]).getPoint(Math.random());
       d.position.set(p2.x+(Math.random()-.5)*.3,p2.y+(Math.random()-.5)*.25,p2.z+(Math.random()-.5)*.3);
       d.scale.setScalar(.6+Math.random()*.6);d.rotation.set((Math.random()-.5)*1.6,(Math.random()-.5)*1.6,Math.random()*6);d.updateMatrix();
       fl.setMatrixAt(i,d.matrix);fl.setColorAt(i,pal[i%4]);
     }
+    addLeaves(g,tw,LEAF_COUNT);
     flowMats.push(fl.material);g.add(fl);return g}
 
   // treeJourney: Left-side branch close to "MY JOURNEY THIS 3RD YEAR"
@@ -1560,27 +1611,44 @@ body.loading{overflow:hidden}
     };
   });
 
-  // Timeline Progress Bar Growth
+  // Timeline: growing branch, blooming milestones, falling petals
   var tl = document.querySelector('.tl'),
-      tlItems = document.querySelectorAll('.tl li');
-
+      tlItems = [].slice.call(document.querySelectorAll('.tl li')),
+      tlReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (tl && !tl.querySelector('.tl-head')) {
+    var tlHead = document.createElement('span');
+    tlHead.className = 'tl-head'; tlHead.setAttribute('aria-hidden', 'true'); tlHead.textContent = '\u273F';
+    tl.appendChild(tlHead);
+  }
+  function bloomPetals(li) {
+    if (tlReduce) return;
+    for (var i = 0; i < 7; i++) {
+      var p = document.createElement('i');
+      p.className = 'tl-petal';
+      p.style.cssText = 'left:calc(-3.2rem + ' + (8 + Math.random() * 18) + 'px);--dx:' + ((Math.random() - .5) * 90) + 'px;--r:' + (Math.random() * 360) + 'deg;animation-delay:' + (i * .08) + 's';
+      li.appendChild(p);
+      setTimeout((function(el){ return function(){ el.remove(); }; })(p), 2800);
+    }
+  }
   function updateTimeline() {
     if (!tl || !tlItems.length) return;
-    var rect = tl.getBoundingClientRect();
-    var winH = window.innerHeight;
-    var progress = (winH - rect.top) / (winH + rect.height);
-    var grow = Math.min(Math.max(progress, 0), 1);
-    tl.style.setProperty('--grow', grow);
-
+    var rect = tl.getBoundingClientRect(), line = window.innerHeight * .62;
+    tl.style.setProperty('--grow', Math.min(Math.max((line - rect.top) / rect.height, 0), 1));
+    var cur = null, best = 1e9;
     tlItems.forEach(function(item) {
-      var itemRect = item.getBoundingClientRect();
-      if (itemRect.top < winH * 0.8) {
-        item.classList.add('on');
+      var y = item.getBoundingClientRect().top + 18;
+      if (y < line) {
+        if (!item.classList.contains('on')) { item.classList.add('on'); bloomPetals(item); }
+        var d = line - y; if (d < best) { best = d; cur = item; }
+      } else {
+        item.classList.remove('on');
       }
     });
+    tlItems.forEach(function(item) { item.classList.toggle('cur', item === cur); });
   }
-
-  window.addEventListener('scroll', updateTimeline);
+  window.addEventListener('scroll', updateTimeline, { passive: true });
+  window.addEventListener('resize', updateTimeline);
+  updateTimeline();
 
   // Scroll Progress Indicator & Loader Removal
   var progressBar = document.getElementById('progress');
