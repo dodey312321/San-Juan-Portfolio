@@ -5,15 +5,20 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>San Juan / Portfolio</title>
+<meta name="description" content="Romejay San Juan, BSIT student. Portfolio with my journey, skills, favorite games and the things I've made.">
+<meta name="theme-color" content="#241a2e">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Romejay San Juan | Portfolio">
+<meta property="og:description" content="BSIT student who builds things, breaks them, and writes down what he learned.">
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@300;500;700&family=Shippori+Mincho:wght@500;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f6e6ea;--ink:#3b2a35;--mute:#7a5f6c;--card:#fffafa;--cink:#3b2a35;--glass:rgba(255,255,255,.55);--line:rgba(59,42,53,.2);--acc:#d9466f;--halo:rgba(255,246,248,.9);
+:root{--bg-img:none;--bg:#f6e6ea;--ink:#3b2a35;--mute:#7a5f6c;--card:#fffafa;--cink:#3b2a35;--glass:rgba(255,255,255,.55);--line:rgba(59,42,53,.2);--acc:#d9466f;--halo:rgba(255,246,248,.9);
 box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#3b3040;--ink:#fbeef0;--mute:#c9b3bd;--glass:rgba(255,255,255,.1);--line:rgba(255,255,255,.22);--acc:#ffb3c6;--halo:rgba(24,15,30,.92)}}
-:root[data-theme="dark"]{--bg:#3b3040;--ink:#fbeef0;--mute:#c9b3bd;--glass:rgba(255,255,255,.1);--line:rgba(255,255,255,.22);--acc:#ffb3c6;--halo:rgba(24,15,30,.92)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#241a2e;--bg-img:radial-gradient(ellipse at 18% 0%,rgba(135,90,150,.30),transparent 55%),radial-gradient(ellipse at 85% 18%,rgba(255,217,160,.07),transparent 50%),linear-gradient(180deg,#2d2139 0%,#1a1224 100%);--ink:#fbeef0;--mute:#c9b3bd;--glass:rgba(255,255,255,.1);--line:rgba(255,255,255,.22);--acc:#ffb3c6;--halo:rgba(24,15,30,.92)}}
+:root[data-theme="dark"]{--bg:#241a2e;--bg-img:radial-gradient(ellipse at 18% 0%,rgba(135,90,150,.30),transparent 55%),radial-gradient(ellipse at 85% 18%,rgba(255,217,160,.07),transparent 50%),linear-gradient(180deg,#2d2139 0%,#1a1224 100%);--ink:#fbeef0;--mute:#c9b3bd;--glass:rgba(255,255,255,.1);--line:rgba(255,255,255,.22);--acc:#ffb3c6;--halo:rgba(24,15,30,.92)}
 html{scroll-behavior:smooth;scroll-padding-top:5rem}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:300 1.05rem/1.65 Lexend,system-ui,sans-serif}
+body{margin:0;background:var(--bg-img) fixed,var(--bg);color:var(--ink);font:300 1.05rem/1.65 Lexend,system-ui,sans-serif}
 #gl{position:fixed;inset:0;width:100%;height:100%;z-index:0}
 #gl2{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}   /* side branches: behind the panels and all content */
 section{position:relative;z-index:1;min-height:100vh;display:flex;align-items:center;padding:6rem clamp(1.2rem,6vw,6rem)}
@@ -137,7 +142,7 @@ a:focus-visible,button:focus-visible,.frame:focus-visible,.about-img-container:f
 .item{border-radius:22px;background:#f7e8ec;padding:1.1rem}
 .item h3{margin:0 0 .2rem;font-weight:500;font-size:1.15rem}.item p{margin:0;font-size:.95rem}
 .theme{position:fixed;z-index:5;right:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));border:1px solid var(--line);background:var(--glass);color:var(--ink);border-radius:99px;padding:.45rem .9rem;font:inherit;font-size:.85rem;cursor:pointer;backdrop-filter:blur(8px)}
-#dusk{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;background:radial-gradient(ellipse at 25% 0%,rgba(255,240,205,.28),transparent 60%),#1d1a22}
+#dusk{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;background:radial-gradient(ellipse at 25% 0%,rgba(255,240,205,.28),transparent 60%),#1a1224}
 body.night{--halo:rgba(24,15,30,.92);--ink:#fbeef0;--mute:#d8c5cd;--glass:rgba(255,255,255,.12);--line:rgba(255,255,255,.24)}
 #end{min-height:80vh;align-items:flex-start;padding-top:10vh}
 h1,.sub{text-shadow:0 0 12px var(--halo),0 0 28px var(--halo),0 2px 3px var(--halo)}
@@ -630,7 +635,7 @@ h1{font-family:"Shippori Mincho","Cormorant Garamond",Georgia,"Times New Roman",
 
 /* ---- Loader, progress, hint ---- */
 body.loading{overflow:hidden}
-#loader{position:fixed;inset:0;z-index:300;display:grid;place-content:center;justify-items:center;gap:1.6rem;background:#2b2030;color:#fbeef0;transition:opacity .7s ease,visibility .7s}
+#loader{position:fixed;inset:0;z-index:300;display:grid;place-content:center;justify-items:center;gap:1.6rem;background:#241a2e;color:#fbeef0;transition:opacity .7s ease,visibility .7s}
 #loader.done{opacity:0;visibility:hidden}
 #loader p{margin:0;font-family:"Shippori Mincho",Georgia,serif;font-weight:500;letter-spacing:.3em;text-transform:uppercase;font-size:.85rem;opacity:0;animation:ldfade .8s .6s forwards}
 .bloom{position:relative;width:90px;height:90px}
@@ -639,7 +644,7 @@ body.loading{overflow:hidden}
 .bloom b{position:absolute;left:50%;top:50%;width:16px;height:16px;margin:-8px;border-radius:50%;background:#ffd166;transform:scale(0);animation:bloom .6s .7s forwards}
 @keyframes bloom{to{transform:rotate(calc(var(--k,0)*72deg)) scale(1)}}
 @keyframes ldfade{to{opacity:.85}}
-#progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#f29ab4,#d9466f);pointer-events:none}
+#progress{position:fixed;top:0;left:0;right:0;height:3px;z-index:60;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,#f29ab4,#ffb3c6 60%,#ffd9a0);pointer-events:none}
 .hint{opacity:.7;font-size:.9rem;letter-spacing:.08em}
 @media (prefers-reduced-motion:reduce){.bloom i{animation:none;transform:rotate(calc(var(--k)*72deg)) scale(1)}.bloom b{animation:none;transform:scale(1)}#loader p{animation:none;opacity:.85}.game-card.reveal-in{animation:none}}
 @media (scripting:none){#loader{display:none}}
@@ -703,10 +708,20 @@ body.loading{overflow:hidden}
 .proj:hover .proj-img,.proj:focus-visible .proj-img{opacity:1}
 .proj-shot .win{position:relative;z-index:2}
 @media (hover:none){.proj-img{opacity:1}}
+
+/* ---- polish: focus rings, panel reveal, back-to-top ---- */
+a:focus-visible,button:focus-visible,.game-card:focus-visible,.proj:focus-visible{outline:3px solid #ffb3c6;outline-offset:3px}
+.panel{transition:opacity .8s ease,transform .8s ease}
+.panel.pre{opacity:0;transform:translateY(28px)}
+.to-top{position:fixed;left:1rem;bottom:calc(1rem + env(safe-area-inset-bottom,0px));z-index:50;width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--glass);color:var(--ink);font-size:1.2rem;cursor:pointer;backdrop-filter:blur(8px);opacity:0;transform:translateY(12px);pointer-events:none;transition:opacity .3s,transform .3s,background .2s,color .2s}
+.to-top.show{opacity:1;transform:none;pointer-events:auto}
+.to-top:hover{background:#ffb3c6;color:#3b2236}
+@media (prefers-reduced-motion:reduce){.panel.pre{opacity:1;transform:none}}
 </style>
 </head>
 <body class="loading">
 <div id="progress" aria-hidden="true"></div>
+<button class="to-top" id="toTop" aria-label="Back to top">&#8593;</button>
 <div id="loader" aria-hidden="true"><div class="bloom"><i></i><i></i><i></i><i></i><i></i><b></b></div><p>Romejay San Juan</p></div>
 <div id="dusk" aria-hidden="true"></div>
 <canvas id="gl" aria-hidden="true"></canvas>
@@ -756,7 +771,7 @@ body.loading{overflow:hidden}
   <div class="about-media">
     <span class="about-label">A Collage About Me</span>
     <div class="about-img-container" id="openCollageModal" tabindex="0" role="button" aria-label="Enlarge collage image">
-      <img src="collage dodey.png" alt="A collage about Romejay's hobbies, drawing, gym, and photography">
+      <img loading="lazy" decoding="async" src="collage dodey.png" alt="A collage about Romejay's hobbies, drawing, gym, and photography">
     </div>
   </div>
 </div></div></section>
@@ -764,7 +779,7 @@ body.loading{overflow:hidden}
 <div class="image-modal" id="collageModal" aria-hidden="true">
   <div class="image-modal-content">
     <button class="image-modal-close" id="collageModalClose" aria-label="Close image">&times;</button>
-    <img src="collage dodey.png" alt="A collage about Romejay's hobbies, drawing, gym, and photography">
+    <img loading="lazy" decoding="async" src="collage dodey.png" alt="A collage about Romejay's hobbies, drawing, gym, and photography">
   </div>
 </div>
 
@@ -805,49 +820,49 @@ body.loading{overflow:hidden}
   <div class="filters" role="group" aria-label="Filter games"><button class="fchip on" data-f="all">All</button><button class="fchip" data-f="jrpg">JRPG</button><button class="fchip" data-f="rpg">RPG</button></div>
   <div class="games-grid">
     <div class="item game-card" data-title="Elden Ring" data-genre="Action RPG / Souls Like" data-synopsis="In the Lands Between ruled by Queen Marika the Eternal, the Elden Ring has been shattered. Rise, Tarnished, and be guided by grace to brandish the power of the Elden Ring and become an Elden Lord." data-details="Developer: FromSoftware | Released: 2022 | Platform: PC, PS, Xbox" data-img="elden-ring-button-03-1623460560664.jpg">
-      <div class="game-thumb"><img src="elden-ring-button-03-1623460560664.jpg" alt="Elden Ring"></div>
+      <div class="game-thumb"><img loading="lazy" decoding="async" src="elden-ring-button-03-1623460560664.jpg" alt="Elden Ring"></div>
       <h3>Elden Ring</h3>
       <p>Action RPG / Souls Like</p>
     </div>
 
     <div class="item game-card" data-title="Until Then" data-genre="Narrative Adventure" data-synopsis="A story about love, loss, and the choices that define us." data-details="Developer: Polychroma Games | Released: 2024 | Platform: PC, PS5" data-img="untilthen.jpeg">
-      <div class="game-thumb"><img src="untilthen.jpeg" alt="Until Then"></div>
+      <div class="game-thumb"><img loading="lazy" decoding="async" src="untilthen.jpeg" alt="Until Then"></div>
       <h3>Until Then</h3>
       <p>Narrative Adventure</p>
     </div>
 
     <div class="item game-card" data-title="Persona 4 Golden" data-genre="JRPG" data-synopsis="A coming-of-age story set in the rural town of Inaba, where a series of mysterious murders coincides with a rumor about the Midnight Channel. Together with the Investigation Team, you must unravel the truth while balancing high school life." data-details="Developer: Atlus | Released: 2012 | Platform: PC, PS Vita, PS4, Xbox, Switch" data-img="p4g.jpeg">
-      <div class="game-thumb"><img src="p4g.jpeg" alt="Persona 4 Golden"></div>
+      <div class="game-thumb"><img loading="lazy" decoding="async" src="p4g.jpeg" alt="Persona 4 Golden"></div>
       <h3>Persona 4 Golden</h3>
       <p>JRPG</p>
     </div>
 
     <div class="item game-card" data-title="Heavy Rain" data-genre="Interactive Drama / Thriller" data-synopsis="A gripping interactive thriller where four playable characters hunt for the Origami Killer, a serial murderer who leaves folded paper shapes at his crime scenes. How far will you go to save someone you love?" data-details="Developer: Quantic Dream | Released: 2010 | Platform: PC, PS3, PS4" data-img="heavyrain.jpeg">
-      <div class="game-thumb"><img src="heavyrain.jpeg" alt="Heavy Rain"></div>
+      <div class="game-thumb"><img loading="lazy" decoding="async" src="heavyrain.jpeg" alt="Heavy Rain"></div>
       <h3>Heavy Rain</h3>
       <p>Interactive Drama / Thriller</p>
     </div>
 
     <div class="item game-card" data-title="Final Fantasy VIII" data-genre="JRPG" data-synopsis="Squall Leonhart, a mercenary student in the elite SeeD unit, is pulled into a war against the sorceress Edea. As dark secrets unfold, he and his squad must fight across time to save their world." data-details="Developer: Square | Released: 1999 | Platform: PC, PS, PS4, Xbox One, Switch" data-img="finalfantasyviii_5.jpeg">
-      <div class="game-thumb"><img src="finalfantasyviii_5.jpeg" alt="Final Fantasy VIII"></div>
+      <div class="game-thumb"><img loading="lazy" decoding="async" src="finalfantasyviii_5.jpeg" alt="Final Fantasy VIII"></div>
       <h3>Final Fantasy VIII</h3>
       <p>JRPG</p>
     </div>
 
     <div class="item game-card" data-title="Final Fantasy IX" data-genre="JRPG" data-synopsis="Zidane Tribal and the Tantalus Theater Troupe kidnap Princess Garnet of Alexandria. Together with a colorful group of companions, they uncover a conspiracy that threatens the entire world of Gaia." data-details="Developer: Square | Released: 2000 | Platform: PC, PS, PS4, Xbox One, Switch, Mobile" data-img="ff9.jpg">
-      <div class="game-thumb"><img src="ff9.jpg" alt="Final Fantasy IX"></div>
+      <div class="game-thumb"><img loading="lazy" decoding="async" src="ff9.jpg" alt="Final Fantasy IX"></div>
       <h3>Final Fantasy IX</h3>
       <p>JRPG</p>
     </div>
 
     <div class="item game-card" data-title="Disco Elysium" data-genre="RPG / Detective" data-synopsis="You're a washed-up detective with a unique skill system at your disposal and a whole city block to carve your path across. Interrogate unforgettable characters, crack murders, or take bribes in this ground-breaking role-playing experience." data-details="Developer: ZA/UM | Released: 2019 | Platform: PC, PS4, PS5, Xbox, Switch" data-img="discoelysium.jpeg">
-      <div class="game-thumb"><img src="discoelysium.jpeg" alt="Disco Elysium"></div>
+      <div class="game-thumb"><img loading="lazy" decoding="async" src="discoelysium.jpeg" alt="Disco Elysium"></div>
       <h3>Disco Elysium</h3>
       <p>RPG / Detective</p>
     </div>
 
     <div class="item game-card" data-title="Detroit: Become Human" data-genre="Interactive Drama / Sci-Fi" data-synopsis="Set in Detroit during the year 2038, the city has been revitalized by the invention and introduction of androids into everyday life. But when androids start behaving as if they are alive, events begin to spin out of control." data-details="Developer: Quantic Dream | Released: 2018 | Platform: PC, PS4" data-img="detroit.jpeg">
-      <div class="game-thumb"><img src="detroit.jpeg" alt="Detroit: Become Human"></div>
+      <div class="game-thumb"><img loading="lazy" decoding="async" src="detroit.jpeg" alt="Detroit: Become Human"></div>
       <h3>Detroit: Become Human</h3>
       <p>Interactive Drama / Sci-Fi</p>
     </div>
@@ -953,7 +968,7 @@ body.loading{overflow:hidden}
 
   var reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,root=document.documentElement;
   document.getElementById('theme').onclick=function(){
-    var dark=getComputedStyle(root).getPropertyValue('--bg').trim()==='#3b3040';
+    var dark=getComputedStyle(root).getPropertyValue('--bg').trim()==='#241a2e';
     root.setAttribute('data-theme',dark?'light':'dark');
   };
 
@@ -1670,6 +1685,22 @@ body.loading{overflow:hidden}
   });
 
   draw();
+})();
+(function(){
+  var rmo=matchMedia('(prefers-reduced-motion: reduce)').matches;
+  // nav: tell screen readers which section is current
+  var navEl=document.querySelector('.nav');
+  if(navEl)new MutationObserver(function(){navEl.querySelectorAll('a').forEach(function(a){a.setAttribute('aria-current',a.classList.contains('on')?'true':'false')})}).observe(navEl,{subtree:true,attributes:true,attributeFilter:['class']});
+  // panels fade up as they come into view
+  if(!rmo){
+    var pio=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.remove('pre');pio.unobserve(e.target)}})},{threshold:.06});
+    [].slice.call(document.querySelectorAll('.panel')).forEach(function(p){p.classList.add('pre');pio.observe(p)});
+  }
+  // back to top
+  var toTop=document.getElementById('toTop');
+  function ttShow(){toTop.classList.toggle('show',scrollY>innerHeight*.8)}
+  addEventListener('scroll',ttShow,{passive:true});ttShow();
+  toTop.addEventListener('click',function(){scrollTo({top:0,behavior:rmo?'auto':'smooth'})});
 })();
 </script>
 </body>
